@@ -1,7 +1,13 @@
 ﻿export const addUserToStorage = (userId: string, token: string) => {
-  localStorage.setItem("USER_ID", userId);
-  localStorage.setItem("ACCESS_TOKEN", token);
+  addUserIdToStorage(userId);
+  addTokenToStorage(token);
 };
+
+export const addUserIdToStorage = (userId: string) =>
+  localStorage.setItem("USER_ID", userId);
+
+export const addTokenToStorage = (token: string) =>
+  localStorage.setItem("ACCESS_TOKEN", token);
 
 export const removeUserFromStorage = () => {
   localStorage.removeItem("USER_ID");

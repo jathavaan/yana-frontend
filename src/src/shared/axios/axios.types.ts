@@ -5,9 +5,9 @@ type RequestMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 export interface AxiosRequestParams<TQueryParameters, TBody> {
   endpoint: string;
   requestMethod: RequestMethod;
-  parameters: TQueryParameters | undefined;
-  body: TBody | undefined;
-  token: string | undefined;
+  parameters?: TQueryParameters;
+  body?: TBody;
+  token?: string;
 }
 
 export interface YanaAxiosRequestConfig extends AxiosRequestConfig {

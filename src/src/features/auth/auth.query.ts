@@ -1,21 +1,15 @@
 ﻿import { useMutation } from "@tanstack/react-query";
 import {
   loginGoogleUser,
-  refreshGoogleAccessToken,
   registerGoogleUser,
 } from "@features/auth/auth.api.ts";
 
-export const useGoogleLoginMutation = (refreshToken: string) =>
+export const useGoogleLoginMutation = () =>
   useMutation({
-    mutationFn: () => loginGoogleUser(refreshToken),
+    mutationFn: loginGoogleUser,
   });
 
-export const useGoogleRegisterMutation = (refreshToken: string) =>
+export const useGoogleRegisterMutation = () =>
   useMutation({
-    mutationFn: () => registerGoogleUser(refreshToken),
-  });
-
-export const useRefreshTokenMutation = (userId: string) =>
-  useMutation({
-    mutationFn: () => refreshGoogleAccessToken(userId),
+    mutationFn: registerGoogleUser,
   });

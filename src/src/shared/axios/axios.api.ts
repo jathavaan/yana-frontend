@@ -46,6 +46,36 @@ axiosInstance.interceptors.response.use(
   },
 );
 
+/**
+ * Sends an API request using Axios with support for multiple HTTP methods.
+ * Handles query parameters, request bodies, and authorization tokens dynamically.
+ *
+ * @template TQueryParameters - Type of the query parameters.
+ * @template TBody - Type of the request body.
+ * @template TResponse - Type of the expected response.
+ *
+ * @param {Object} params - Parameters for the API request.
+ * @param {string} params.endpoint - The API endpoint to which the request will be sent.
+ * @param {"GET" | "POST" | "PUT" | "PATCH" | "DELETE"} params.requestMethod - The HTTP method for the request.
+ * @param {TQueryParameters} [params.parameters] - Query parameters to include in the request (optional).
+ * @param {TBody} [params.body] - Request body to include in the request (optional, only for POST, PUT, PATCH).
+ * @param {string} [params.token] - Authorization token for bearer authentication (optional).
+ *
+ * @returns {Promise<TResponse>} The response data from the API.
+ *
+ * @throws {Error} If the request method does not support a body or if an unsupported request method is provided.
+ *
+ * @example
+ * // Example usage:
+ * const response = await sendApiRequest<{ userId: string }, { name: string }, User>({
+ *   endpoint: '/users',
+ *   requestMethod: 'POST',
+ *   parameters: { userId: '123' },
+ *   body: { name: 'John Doe' },
+ *   token: 'your-auth-token',
+ * });
+ * console.log(response);
+ */
 export const sendApiRequest = async <TQueryParameters, TBody, TResponse>({
   endpoint,
   requestMethod,
@@ -91,5 +121,6 @@ export const sendApiRequest = async <TQueryParameters, TBody, TResponse>({
   }
 
   response = response as AxiosResponse<TResponse>;
+  console.log(response);
   return response.data;
 };
