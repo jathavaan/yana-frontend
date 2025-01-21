@@ -1,58 +1,82 @@
-﻿import { useGoogleLoginMutation } from "@features/auth/auth.query.ts";
-import { GoogleAuthResponse } from "@features/auth/auth.types.ts";
+﻿import {
+  useGoogleLoginMutation,
+  useGoogleRegisterMutation,
+} from "@features/auth/auth.query.ts";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "@shared/stores";
+import { setToken, setUserId } from "@features/auth/auth.slice.ts";
 import {
-  selectToken,
-  selectUserId,
-  setToken,
-  setUserId,
-} from "@features/auth/auth.slice.ts";
-import { googleLogout } from "@react-oauth/google";
+  CodeResponse,
+  googleLogout,
+  useGoogleLogin as useReactOauthGoogleLogin,
+} from "@react-oauth/google";
 
 export const useGoogleLogin = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const userId = useSelector(selectUserId);
-  const token = useSelector(selectToken);
 
   const {
     mutate,
-    data: authenticatedUser,
+    data: googleLoginResponse,
     isPending: isGoogleLoginPending,
     isError: isGoogleLoginError,
-    error,
   } = useGoogleLoginMutation();
 
-  const onLoginSuccess = (response: GoogleAuthResponse) => {
-    if (!response.credential) return;
-    dispatch(setToken(response.credential));
-    mutate();
-  };
-
-  const onLoginFailure = () => {};
+  const onGoogleLoginClick = useReactOauthGoogleLogin({
+    onSuccess: (response: CodeResponse) => {
+      if (!response.code) return;
+      mutate(response.code);
+    },
+    flow: "auth-code",
+  });
 
   const onLogout = () => {
     console.log("Logged out");
     googleLogout();
   };
 
-  const authProviders = [{ id: "google", name: "Google" }];
-
   useEffect(() => {
-    if (authenticatedUser?.userId && token) {
-      console.log(authenticatedUser);
-      dispatch(setUserId(authenticatedUser.userId));
+    if (googleLoginResponse?.userId && googleLoginResponse.accessToken) {
+      dispatch(setUserId(googleLoginResponse.userId));
+      dispatch(setToken(googleLoginResponse.accessToken));
     }
-  }, [authenticatedUser, dispatch, error, token, userId]);
+  }, [googleLoginResponse, dispatch]);
 
   return {
-    authProviders,
+    onGoogleLoginClick,
+    onLogout,
     isGoogleLoginPending,
     isGoogleLoginError,
-    onLoginSuccess,
-    onLoginFailure,
-    onLogout,
   };
 };
-export const useGoogleRegister = () => {};
+export const useGoogleRegister = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const {
+    mutate,
+    data: googleRegisterResponse,
+    isPending: isGoogleRegisterPending,
+    isError: isGoogleRegisterError,
+  } = useGoogleRegisterMutation();
+
+  const onGoogleRegisterClick = useReactOauthGoogleLogin({
+    onSuccess: (response: CodeResponse) => {
+      if (!response.code) return;
+      mutate(response.code);
+    },
+    flow: "auth-code",
+  });
+
+  useEffect(() => {
+    if (googleRegisterResponse?.userId && googleRegisterResponse.accessToken) {
+      dispatch(setUserId(googleRegisterResponse.userId));
+      dispatch(setToken(googleRegisterResponse.accessToken));
+    }
+  }, [googleRegisterResponse, dispatch]);
+
+  return {
+    onGoogleRegisterClick,
+    isGoogleRegisterPending,
+    isGoogleRegisterError,
+  };
+};

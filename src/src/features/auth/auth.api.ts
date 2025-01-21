@@ -1,18 +1,33 @@
-﻿import { UserType } from "@shared/types";
+﻿import { AuthenticateUserResponse } from "@shared/types";
 import { sendApiRequest } from "@shared/axios";
-import { LoginAndRegisterUserBody } from "@shared/auth/auth.types.ts";
-import { getUserToken } from "@shared/auth";
+import { AuthenticateUserBody } from "@shared/auth/auth.types.ts";
 
-export const loginGoogleUser = async (): Promise<UserType> =>
-  await sendApiRequest<undefined, LoginAndRegisterUserBody, UserType>({
+export const loginGoogleUser = async (
+  authorizationCode: string,
+): Promise<AuthenticateUserResponse> =>
+  await sendApiRequest<
+    undefined,
+    AuthenticateUserBody,
+    AuthenticateUserResponse
+  >({
     endpoint: "Auth/login/google",
     requestMethod: "POST",
-    token: getUserToken() ?? "",
+    body: {
+      authorizationCode: authorizationCode,
+    },
   });
 
-export const registerGoogleUser = async (): Promise<UserType> =>
-  await sendApiRequest<undefined, LoginAndRegisterUserBody, UserType>({
+export const registerGoogleUser = async (
+  authorizationCode: string,
+): Promise<AuthenticateUserResponse> =>
+  await sendApiRequest<
+    undefined,
+    AuthenticateUserBody,
+    AuthenticateUserResponse
+  >({
     endpoint: "Auth/register/google",
     requestMethod: "POST",
-    token: getUserToken() ?? "",
+    body: {
+      authorizationCode: authorizationCode,
+    },
   });

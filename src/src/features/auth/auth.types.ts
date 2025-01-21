@@ -1,4 +1,10 @@
-﻿export interface AuthState {
+﻿declare global {
+  interface Window {
+    google: unknown;
+  }
+}
+
+export interface AuthState {
   userId?: string;
   token?: string;
 }

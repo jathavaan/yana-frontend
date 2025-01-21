@@ -121,6 +121,5 @@ export const sendApiRequest = async <TQueryParameters, TBody, TResponse>({
   }
 
   response = response as AxiosResponse<TResponse>;
-  console.log(response);
   return response.data;
 };

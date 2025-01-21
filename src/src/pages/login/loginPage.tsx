@@ -1,5 +1,10 @@
-﻿import { LoginButtonGoogle } from "@features/auth";
+﻿import { RegisterGoogleButton, LoginButtonGoogle } from "@features/auth";
 
 export const LoginPage = () => {
-  return <LoginButtonGoogle />;
+  return (
+    <div>
+      <LoginButtonGoogle />
+      <RegisterGoogleButton />
+    </div>
+  );
 };

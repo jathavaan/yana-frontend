@@ -2,8 +2,8 @@
   userId: string;
 }
 
-export interface LoginAndRegisterUserBody {
-  refreshToken: string;
+export interface AuthenticateUserBody {
+  authorizationCode: string;
 }
 
 export interface RefreshAccessTokenResponse {
