@@ -36,9 +36,9 @@ export const useGoogleLogin = () => {
   };
 
   useEffect(() => {
-    if (googleLoginResponse?.userId && googleLoginResponse.accessToken) {
+    if (googleLoginResponse?.userId && googleLoginResponse.idToken) {
       dispatch(setUserId(googleLoginResponse.userId));
-      dispatch(setToken(googleLoginResponse.accessToken));
+      dispatch(setToken(googleLoginResponse.idToken));
     }
   }, [googleLoginResponse, dispatch]);
 
@@ -68,9 +68,9 @@ export const useGoogleRegister = () => {
   });
 
   useEffect(() => {
-    if (googleRegisterResponse?.userId && googleRegisterResponse.accessToken) {
+    if (googleRegisterResponse?.userId && googleRegisterResponse.idToken) {
       dispatch(setUserId(googleRegisterResponse.userId));
-      dispatch(setToken(googleRegisterResponse.accessToken));
+      dispatch(setToken(googleRegisterResponse.idToken));
     }
   }, [googleRegisterResponse, dispatch]);
 

@@ -1,16 +1,19 @@
-﻿declare global {
-  interface Window {
-    google: unknown;
-  }
-}
-
-export interface AuthState {
+﻿export interface AuthState {
   userId?: string;
-  token?: string;
+  idToken?: string;
 }
 
 export interface LoginProps {
   refreshToken: string;
+}
+
+export interface AuthenticateUserBody {
+  authorizationCode: string;
+}
+
+export interface AuthenticateUserResponse {
+  userId: string;
+  idToken: string;
 }
 
 export interface GoogleAuthResponse {

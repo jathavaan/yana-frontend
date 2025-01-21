@@ -1,6 +1,8 @@
-﻿import { AuthenticateUserResponse } from "@shared/types";
-import { sendApiRequest } from "@shared/axios";
-import { AuthenticateUserBody } from "@shared/auth/auth.types.ts";
+﻿import { sendApiRequest } from "@shared/axios";
+import {
+  AuthenticateUserBody,
+  AuthenticateUserResponse,
+} from "@features/auth/auth.types.ts";
 
 export const loginGoogleUser = async (
   authorizationCode: string,
