@@ -1,4 +1,6 @@
 ﻿import { useGoogleLogin } from "@features/auth/auth.hooks.ts";
+import { Button } from "@features/ui/button";
+import GoogleIcon from "@mui/icons-material/Google";
 
 export const LoginButtonGoogle = () => {
   const { onGoogleLoginClick, isGoogleLoginPending, isGoogleLoginError } =
@@ -6,9 +8,13 @@ export const LoginButtonGoogle = () => {
 
   return (
     <div>
-      {isGoogleLoginPending && <p>Logging in...</p>}
       {isGoogleLoginError && <p>Something went wrong while logging in</p>}
-      <button onClick={() => onGoogleLoginClick()}>Sign in</button>
+      <Button
+        buttonText="Login with Google"
+        onClick={() => onGoogleLoginClick()}
+        isLoading={isGoogleLoginPending}
+        startIcon={<GoogleIcon />}
+      />
     </div>
   );
 };
