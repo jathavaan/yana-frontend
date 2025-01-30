@@ -14,14 +14,10 @@ export const removeUserFromStorage = () => {
   localStorage.removeItem("ACCESS_TOKEN");
 };
 
-export const refreshToken = (accessToken: string) => {
+export const refreshToken = (accessToken: string) =>
   localStorage.setItem("ACCESS_TOKEN", accessToken);
-};
 
-export const getUserToken = (): string | null => {
-  return localStorage.getItem("ACCESS_TOKEN");
-};
+export const getUserToken = (): string | null =>
+  localStorage.getItem("ACCESS_TOKEN");
 
-export const getUserId = (): string | null => {
-  return localStorage.getItem("USER_ID");
-};
+export const getUserId = (): string | null => localStorage.getItem("USER_ID");

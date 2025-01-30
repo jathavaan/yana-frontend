@@ -7,11 +7,15 @@ import {
 import { Tile } from "@features/tile/tile.tsx";
 import { useState } from "react";
 import { Button } from "@features/ui/button";
+import { useDocument } from "@features/document/document.hooks.ts";
 
 export const Document = () => {
   const [isEditable, setIsEditable] = useState(false);
+  const { document, isLoading, isError } = useDocument("document-id");
   return (
     <>
+      {isError && <div>Error</div>}
+      {isLoading && <div>Loading</div>}
       <Button
         buttonText={isEditable ? "Disable Edit Mode" : "Enable Edit Mode"}
         onClick={() => setIsEditable(!isEditable)}
@@ -24,43 +28,20 @@ export const Document = () => {
         autoSize={true}
         compactType="vertical"
       >
-        <StyledSection
-          key="a"
-          data-grid={{
-            x: 0,
-            y: 2,
-            h: 2,
-            w: 3,
-            static: !isEditable,
-          }}
-        >
-          <Tile id="a" isEditable={isEditable} />
-        </StyledSection>
-        <Tile id="aaa" isEditable={isEditable} />
-        <StyledSection
-          key="aa"
-          data-grid={{
-            x: 3,
-            y: 0,
-            h: 2,
-            w: 3,
-            static: !isEditable,
-          }}
-        >
-          <Tile id="aa" isEditable={isEditable} />
-        </StyledSection>
-        <StyledSection
-          key="aaa"
-          data-grid={{
-            x: 0,
-            y: 0,
-            h: 2,
-            w: 3,
-            static: !isEditable,
-          }}
-        >
-          <Tile id="aaa" isEditable={isEditable} />
-        </StyledSection>
+        {document?.tiles.map((tile) => (
+          <StyledSection
+            key={tile.id}
+            data-grid={{
+              x: tile.xPosition,
+              y: tile.yPosition,
+              h: tile.height,
+              w: tile.width,
+              static: !isEditable,
+            }}
+          >
+            <Tile id={tile.id} isEditable={isEditable} />
+          </StyledSection>
+        ))}
       </StyledDocumentGrid>
     </>
   );
