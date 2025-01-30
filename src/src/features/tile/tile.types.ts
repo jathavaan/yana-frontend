@@ -5,5 +5,5 @@
 }
 
 export interface TileState {
-  [id: string]: { content: string };
+  [id: string]: { content: string; savedContent: string };
 }

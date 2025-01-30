@@ -10,24 +10,37 @@ export const tileSlice = createSlice({
   reducers: {
     setTile: (
       state,
-      action: PayloadAction<{ id: string; content: string }>,
+      action: PayloadAction<{
+        id: string;
+        content: string;
+        savedContent: string;
+      }>,
     ) => {
-      const { id, content } = action.payload;
-      state[id] = { content };
+      const { id, content, savedContent } = action.payload;
+      state[id] = { content, savedContent };
     },
     setTileContent: (
       state,
       action: PayloadAction<{ id: string; content: string }>,
     ) => {
       const { id, content } = action.payload;
-      if (state[id]) {
-        state[id].content = content;
-      }
+      if (state[id]) state[id].content = content;
+    },
+    setSavedTileContent: (
+      state,
+      action: PayloadAction<{ id: string; savedContent: string }>,
+    ) => {
+      const { id, savedContent } = action.payload;
+      if (state[id]) state[id].savedContent = savedContent;
     },
   },
 });
 
-export const { setTile, setTileContent } = tileSlice.actions;
+export const { setTile, setTileContent, setSavedTileContent } =
+  tileSlice.actions;
 export const selectTileContent = (state: RootState, id: string) =>
   state.tileReducer[id]?.content;
+export const selectSavedTileContent = (state: RootState, id: string) =>
+  state.tileReducer[id]?.savedContent;
+
 export const tileReducer = tileSlice.reducer;
