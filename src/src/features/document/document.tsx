@@ -30,7 +30,7 @@ export const Document = () => {
         containerPadding={[0, 0]}
         rowHeight={106}
         autoSize={true}
-        compactType="vertical"
+        compactType={null}
       >
         {document?.tiles.map((tile) => (
           <Tile
