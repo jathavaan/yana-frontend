@@ -1,9 +1,10 @@
 ﻿import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "@features/auth";
 import { documentReducer } from "@features/document";
+import { tileReducer } from "@features/tile";
 
 export const reduxStore = configureStore({
-  reducer: { authReducer, documentReducer },
+  reducer: { authReducer, documentReducer, tileReducer },
 });
 
 export type RootState = ReturnType<typeof reduxStore.getState>;
