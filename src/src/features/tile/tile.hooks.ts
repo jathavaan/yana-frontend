@@ -2,10 +2,11 @@
 import { useEditor } from "@tiptap/react";
 import { useEffect } from "react";
 
-export const useTile = (id: string, isEditable: boolean) => {
+export const useTile = (id: string, content: string, isEditable: boolean) => {
   const extensions = [StarterKit];
   const editor = useEditor({
-    extensions,
+    extensions: extensions,
+    content: content,
     editable: isEditable,
   });
 

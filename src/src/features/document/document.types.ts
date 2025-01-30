@@ -9,3 +9,7 @@ export interface DocumentResponse {
   title: string;
   tiles: TileResponse[];
 }
+
+export interface DocumentState {
+  isEditable: boolean;
+}

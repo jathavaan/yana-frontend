@@ -5,20 +5,26 @@ import {
   StyledSection,
 } from "@features/document/document.style.ts";
 import { Tile } from "@features/tile/tile.tsx";
-import { useState } from "react";
 import { Button } from "@features/ui/button";
 import { useDocument } from "@features/document/document.hooks.ts";
 
 export const Document = () => {
-  const [isEditable, setIsEditable] = useState(false);
-  const { document, isLoading, isError } = useDocument("document-id");
+  const {
+    document,
+    isDocumentEditable,
+    isLoading,
+    isError,
+    onEditDocumentClick,
+  } = useDocument("document-id");
   return (
     <>
       {isError && <div>Error</div>}
       {isLoading && <div>Loading</div>}
       <Button
-        buttonText={isEditable ? "Disable Edit Mode" : "Enable Edit Mode"}
-        onClick={() => setIsEditable(!isEditable)}
+        buttonText={
+          isDocumentEditable ? "Disable Edit Mode" : "Enable Edit Mode"
+        }
+        onClick={() => onEditDocumentClick()}
       />
       <StyledDocumentGrid
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
@@ -36,10 +42,14 @@ export const Document = () => {
               y: tile.yPosition,
               h: tile.height,
               w: tile.width,
-              static: !isEditable,
+              static: !isDocumentEditable,
             }}
           >
-            <Tile id={tile.id} isEditable={isEditable} />
+            <Tile
+              id={tile.id}
+              content={tile.content}
+              isEditable={isDocumentEditable}
+            />
           </StyledSection>
         ))}
       </StyledDocumentGrid>
