@@ -8,13 +8,10 @@ export const lightTheme = createTheme({
     // success: {},
     // warning: {},
     // error: {},
-    background: {
-      default: "#f7f7f7",
-    },
     // action: {},
   },
   shape: {
-    borderRadius: 6,
+    borderRadius: 10,
   },
   typography: {},
 });

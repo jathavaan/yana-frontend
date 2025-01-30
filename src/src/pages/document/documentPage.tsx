@@ -1,5 +1,5 @@
-﻿import { DocumentGrid } from "@features/documentGrid";
+﻿import { Document } from "@features/document";
 
 export const DocumentPage = () => {
-  return <DocumentGrid />;
+  return <Document />;
 };
