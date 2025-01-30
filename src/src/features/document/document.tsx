@@ -1,12 +1,10 @@
 ﻿import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import {
-  StyledDocumentGrid,
-  StyledSection,
-} from "@features/document/document.style.ts";
-import { Tile } from "@features/tile/tile.tsx";
+import { StyledDocumentGrid } from "@features/document/document.style.ts";
+import { Editor } from "@features/editor/editor.tsx";
 import { Button } from "@features/ui/button";
 import { useDocument } from "@features/document/document.hooks.ts";
+import { Tile } from "@features/ui/tile";
 
 export const Document = () => {
   const {
@@ -35,7 +33,7 @@ export const Document = () => {
         compactType="vertical"
       >
         {document?.tiles.map((tile) => (
-          <StyledSection
+          <Tile
             key={tile.id}
             data-grid={{
               x: tile.xPosition,
@@ -44,13 +42,14 @@ export const Document = () => {
               w: tile.width,
               static: !isDocumentEditable,
             }}
+            isEditable={isDocumentEditable}
           >
-            <Tile
+            <Editor
               id={tile.id}
               content={tile.content}
               isEditable={isDocumentEditable}
             />
-          </StyledSection>
+          </Tile>
         ))}
       </StyledDocumentGrid>
     </>

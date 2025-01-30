@@ -1,14 +1,14 @@
-﻿import { TileState } from "@features/tile/tile.types.ts";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+﻿import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@shared/stores";
+import { EditorState } from "@features/editor/editor.types.ts";
 
-const initialState: TileState = {};
+const initialState: EditorState = {};
 
-export const tileSlice = createSlice({
-  name: "tile",
+export const editorSlice = createSlice({
+  name: "editor",
   initialState,
   reducers: {
-    setTile: (
+    setEditor: (
       state,
       action: PayloadAction<{
         id: string;
@@ -19,14 +19,14 @@ export const tileSlice = createSlice({
       const { id, content, savedContent } = action.payload;
       state[id] = { content, savedContent };
     },
-    setTileContent: (
+    setEditorContent: (
       state,
       action: PayloadAction<{ id: string; content: string }>,
     ) => {
       const { id, content } = action.payload;
       if (state[id]) state[id].content = content;
     },
-    setSavedTileContent: (
+    setSavedEditorContent: (
       state,
       action: PayloadAction<{ id: string; savedContent: string }>,
     ) => {
@@ -36,11 +36,11 @@ export const tileSlice = createSlice({
   },
 });
 
-export const { setTile, setTileContent, setSavedTileContent } =
-  tileSlice.actions;
-export const selectTileContent = (state: RootState, id: string) =>
+export const { setEditor, setEditorContent, setSavedEditorContent } =
+  editorSlice.actions;
+export const selectEditorContent = (state: RootState, id: string) =>
   state.tileReducer[id]?.content;
-export const selectSavedTileContent = (state: RootState, id: string) =>
+export const selectSavedEditorContent = (state: RootState, id: string) =>
   state.tileReducer[id]?.savedContent;
 
-export const tileReducer = tileSlice.reducer;
+export const tileReducer = editorSlice.reducer;

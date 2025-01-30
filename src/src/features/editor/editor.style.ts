@@ -2,7 +2,6 @@
 import { EditorContent } from "@tiptap/react";
 
 export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
   borderRadius: theme.shape.borderRadius,
   padding: 0,

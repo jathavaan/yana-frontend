@@ -2,15 +2,8 @@
 import { useCallback, useEffect } from "react";
 import { AppDispatch, RootState } from "@shared/stores";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectSavedTileContent,
-  selectTileContent,
-  setSavedTileContent,
-  setTile,
-  setTileContent,
-} from "@features/tile/tile.slice.ts";
-import { useSaveTileMutation } from "@features/tile/tile.query.ts";
 import { normalizeHTML } from "@shared/html";
+import { useSaveTileContentMutation } from "@features/editor/editor.query.ts";
 import { StarterKit } from "@tiptap/starter-kit";
 import { Image } from "@tiptap/extension-image";
 import Table from "@tiptap/extension-table";
@@ -18,20 +11,27 @@ import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
 import Typography from "@tiptap/extension-typography";
+import {
+  selectEditorContent,
+  selectSavedEditorContent,
+  setEditor,
+  setEditorContent,
+  setSavedEditorContent,
+} from "@features/editor/editor.slice.ts";
 
-export const useTile = (
+export const useTileEditor = (
   id: string,
   initialContent: string,
   isEditable: boolean,
 ) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const tileContent = useSelector((state: RootState) =>
-    selectTileContent(state, id),
+  const editorContent = useSelector((state: RootState) =>
+    selectEditorContent(state, id),
   );
 
-  const savedTileContent = useSelector((state: RootState) =>
-    selectSavedTileContent(state, id),
+  const savedEditorContent = useSelector((state: RootState) =>
+    selectSavedEditorContent(state, id),
   );
 
   const editor = useEditor({
@@ -46,43 +46,45 @@ export const useTile = (
     ],
     content: initialContent,
     editable: isEditable,
-    onUpdate: ({ editor }) => onTileUpdate(editor),
+    onUpdate: ({ editor }) => onEditorUpdate(editor),
     onBlur: () => {
-      if (normalizeHTML(tileContent) === normalizeHTML(savedTileContent)) {
+      if (normalizeHTML(editorContent) === normalizeHTML(savedEditorContent)) {
         return;
       }
 
-      onTileSave(id);
+      onEditorSave(id);
     },
   });
 
   const {
     mutate: saveTile,
-    isPending: isTileSavePending,
-    isError: isTileSaveError,
-  } = useSaveTileMutation(id, tileContent);
+    isPending: isEditorSavePending,
+    isError: isEditorSaveError,
+  } = useSaveTileContentMutation(id, editorContent);
 
-  const onTileUpdate = (editor: Editor) => {
+  const onEditorUpdate = (editor: Editor) => {
     const content = editor.getHTML();
     dispatch(
-      setTileContent({
+      setEditorContent({
         id: id,
         content: content,
       }),
     );
   };
 
-  const onTileSave = useCallback(
+  const onEditorSave = useCallback(
     (tileId: string) => {
       saveTile();
-      dispatch(setSavedTileContent({ id: tileId, savedContent: tileContent }));
+      dispatch(
+        setSavedEditorContent({ id: tileId, savedContent: editorContent }),
+      );
     },
-    [dispatch, saveTile, tileContent],
+    [dispatch, saveTile, editorContent],
   );
 
   useEffect(() => {
     dispatch(
-      setTile({
+      setEditor({
         id: id,
         content: initialContent,
         savedContent: initialContent,
@@ -92,18 +94,18 @@ export const useTile = (
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      if (normalizeHTML(tileContent) === normalizeHTML(savedTileContent))
+      if (normalizeHTML(editorContent) === normalizeHTML(savedEditorContent))
         return;
 
-      onTileSave(id);
+      onEditorSave(id);
     }, 5000);
 
     return () => clearTimeout(handler);
-  }, [id, onTileSave, savedTileContent, tileContent]);
+  }, [id, onEditorSave, savedEditorContent, editorContent]);
 
   useEffect(() => {
     if (editor) editor.setEditable(isEditable);
   }, [editor, isEditable]);
 
-  return { editor, isTileSavePending, isTileSaveError };
+  return { editor, isEditorSavePending, isEditorSaveError };
 };
