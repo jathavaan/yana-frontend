@@ -1,4 +1,5 @@
-﻿import { TileResponse } from "@shared/types";
+﻿import { LayoutSize, TileResponse } from "@shared/types";
+import { Layouts } from "react-grid-layout";
 
 export interface GetDocumentByIdQueryParameters {
   documentId: string;
@@ -7,9 +8,11 @@ export interface GetDocumentByIdQueryParameters {
 export interface DocumentResponse {
   id: string;
   title: string;
-  tiles: TileResponse[];
+  tileLayout: TileResponse;
 }
 
 export interface DocumentState {
+  layoutSize?: LayoutSize;
+  layouts: Layouts;
   isEditable: boolean;
 }

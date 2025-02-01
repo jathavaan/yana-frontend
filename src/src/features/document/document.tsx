@@ -3,17 +3,24 @@ import "react-resizable/css/styles.css";
 import { StyledDocumentGrid } from "@features/document/document.style.ts";
 import { Editor } from "@features/editor/editor.tsx";
 import { Button } from "@features/ui/button";
-import { useDocument } from "@features/document/document.hooks.ts";
+import {
+  useDocument,
+  useDocumentGrid,
+} from "@features/document/document.hooks.ts";
 import { Tile } from "@features/ui/tile";
+import { LayoutSize } from "@shared/types";
 
 export const Document = () => {
   const {
     document,
+    layouts,
     isDocumentEditable,
     isLoading,
     isError,
     onEditDocumentClick,
   } = useDocument("document-id");
+
+  const { handleLayoutChange, handleBreakPointChange } = useDocumentGrid();
   return (
     <>
       {isError && <div>Error</div>}
@@ -23,27 +30,26 @@ export const Document = () => {
           isDocumentEditable ? "Disable Edit Mode" : "Enable Edit Mode"
         }
         onClick={() => onEditDocumentClick()}
+        sx={{
+          mb: 3,
+          mt: 3,
+        }}
       />
       <StyledDocumentGrid
-        breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-        cols={{ lg: 20, md: 10, sm: 6, xs: 4, xxs: 2 }}
+        breakpoints={{ lg: 1536, md: 1200, sm: 900, xs: 600, xxs: 0 }}
+        cols={{ lg: 30, md: 20, sm: 10, xs: 5, xxs: 1 }}
+        layouts={layouts}
         containerPadding={[0, 0]}
         rowHeight={106}
         autoSize={true}
-        compactType={null}
+        compactType={"vertical"}
+        onLayoutChange={(_, allLayouts) => handleLayoutChange(allLayouts)}
+        onBreakpointChange={(newBreakpoint) =>
+          handleBreakPointChange(newBreakpoint as LayoutSize)
+        }
       >
-        {document?.tiles.map((tile) => (
-          <Tile
-            key={tile.id}
-            data-grid={{
-              x: tile.xPosition,
-              y: tile.yPosition,
-              h: tile.height,
-              w: tile.width,
-              static: !isDocumentEditable,
-            }}
-            isEditable={isDocumentEditable}
-          >
+        {document?.tileLayout.layouts["lg"].map((tile) => (
+          <Tile key={tile.id} isEditable={isDocumentEditable}>
             <Editor
               id={tile.id}
               content={tile.content}

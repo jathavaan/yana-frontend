@@ -5,7 +5,7 @@ import { DocumentPage } from "@pages/document/documentPage.tsx";
 
 function App() {
   return (
-    <Container>
+    <Container maxWidth={false} sx={{ mt: 3 }}>
       <LoginPage />
       <br />
       <RegisterPage />
