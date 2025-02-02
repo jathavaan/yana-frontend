@@ -2,9 +2,15 @@
 import { useTileEditor } from "@features/editor/editor.hooks.ts";
 import { StyledEditorContent } from "@features/editor/editor.style.ts";
 
-export const Editor = ({ id, content, isEditable }: EditorProps) => {
+export const Editor = ({
+  id,
+  editorType,
+  content,
+  isEditable,
+}: EditorProps) => {
   const { editor, isEditorSavePending, isEditorSaveError } = useTileEditor(
     id,
+    editorType,
     content,
     isEditable,
   );

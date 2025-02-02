@@ -53,6 +53,7 @@ export const Document = () => {
           <Tile key={tile.id} isEditable={isDocumentEditable}>
             <Editor
               id={tile.id}
+              editorType={"all"}
               content={tile.content}
               isEditable={isDocumentEditable}
             />

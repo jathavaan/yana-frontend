@@ -1,4 +1,5 @@
 ﻿export type EditorType =
+  | "all"
   | "h1"
   | "h2"
   | "h3"
@@ -11,16 +12,14 @@
   | "pre"
   | "ul"
   | "ol"
-  | "li"
+  | "tl"
   | "a"
   | "img"
-  | "table"
-  | "tr"
-  | "th"
-  | "td";
+  | "table";
 
 export interface EditorProps {
   id: string;
+  editorType: EditorType;
   content: string;
   isEditable: boolean;
 }

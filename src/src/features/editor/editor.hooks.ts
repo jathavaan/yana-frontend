@@ -4,13 +4,6 @@ import { AppDispatch, RootState } from "@shared/stores";
 import { useDispatch, useSelector } from "react-redux";
 import { normalizeHTML } from "@shared/html";
 import { useSaveTileContentMutation } from "@features/editor/editor.query.ts";
-import { StarterKit } from "@tiptap/starter-kit";
-import { Image } from "@tiptap/extension-image";
-import Table from "@tiptap/extension-table";
-import TableCell from "@tiptap/extension-table-cell";
-import TableHeader from "@tiptap/extension-table-header";
-import TableRow from "@tiptap/extension-table-row";
-import Typography from "@tiptap/extension-typography";
 import {
   selectEditorContent,
   selectSavedEditorContent,
@@ -18,9 +11,12 @@ import {
   setEditorContent,
   setSavedEditorContent,
 } from "@features/editor/editor.slice.ts";
+import { EditorType } from "@features/editor/editor.types.ts";
+import { getEditorExtensions } from "@features/editor/editor.utils.ts";
 
 export const useTileEditor = (
   id: string,
+  type: EditorType,
   initialContent: string,
   isEditable: boolean,
 ) => {
@@ -35,15 +31,7 @@ export const useTileEditor = (
   );
 
   const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Image,
-      Table,
-      TableCell,
-      TableHeader,
-      TableRow,
-      Typography,
-    ],
+    extensions: getEditorExtensions(type),
     content: initialContent,
     editable: isEditable,
     onUpdate: ({ editor }) => onEditorUpdate(editor),

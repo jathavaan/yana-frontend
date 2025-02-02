@@ -19,3 +19,5 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     scrollbarColor: `${theme.palette.primary.dark} transparent`,
   },
 }));
+
+// TODO: Create a bubble menu and menu for new line/block
