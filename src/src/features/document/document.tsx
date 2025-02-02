@@ -47,6 +47,7 @@ export const Document = () => {
         onBreakpointChange={(newBreakpoint) =>
           handleBreakPointChange(newBreakpoint as LayoutSize)
         }
+        resizeHandles={["n", "s", "e", "w"]}
       >
         {document?.tileLayout.layouts["lg"].map((tile) => (
           <Tile key={tile.id} isEditable={isDocumentEditable}>

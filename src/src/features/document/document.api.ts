@@ -14,7 +14,7 @@ export const getDocumentById = async (documentId: string) => {
       },
       {
         id: "tile-id-2",
-        content: `<img src="https://via.placeholder.com/150" alt="Placeholder Image" style="width: 100%; height: auto;" /><p>Images can be inside the grid too! Look at this cool placeholder.</p>`,
+        content: `<img src="https://www.shutterstock.com/image-vector/happy-dog-illustration-cool-print-600nw-2278572967.jpg" alt="Placeholder Image" style="width: 100%; height: auto;" /><p>Images can be inside the grid too! Look at this cool placeholder.</p>`,
         xPosition: 3,
         yPosition: 0,
         width: 3,
@@ -81,18 +81,19 @@ export const getDocumentById = async (documentId: string) => {
     tileLayout: {
       layouts: layouts,
     },
+    /*tiles: */
   } as DocumentResponse;
 
   /*return await sendApiRequest<
-                GetDocumentByIdQueryParameters,
-                undefined,
-                DocumentResponse
-              >({
-                endpoint: "Document",
-                requestMethod: "GET",
-                token: getUserToken(),
-                parameters: {
-                  documentId: documentId,
-                },
-              });*/
+          GetDocumentByIdQueryParameters,
+          undefined,
+          DocumentResponse
+        >({
+          endpoint: "Document",
+          requestMethod: "GET",
+          token: getUserToken(),
+          parameters: {
+            documentId: documentId,
+          },
+        });*/
 };
