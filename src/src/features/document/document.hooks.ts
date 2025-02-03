@@ -1,22 +1,26 @@
 ﻿import { useDispatch, useSelector } from "react-redux";
 import {
+  addTile,
+  selectContent,
   selectIsEditable,
   selectLayouts,
+  setIsEditable,
   setLayoutSize,
   setTileLayout,
+  setTileLayoutOnLayoutChange,
   toggleIsEditable,
 } from "@features/document/document.slice.ts";
 import { AppDispatch } from "@shared/stores";
 import { useDocumentQuery } from "@features/document/document.query.ts";
 import { useEffect } from "react";
-import { LayoutSize, Tile } from "@shared/types";
-import { Layouts } from "react-grid-layout";
-import { setLayoutEditMode } from "@features/document/document.utils.ts";
+import { EditorType, LayoutSize, TileContent } from "@shared/types";
+import { Layout, Layouts } from "react-grid-layout";
 
 export const useDocument = (documentId: string) => {
   const dispatch = useDispatch<AppDispatch>();
   const isDocumentEditable = useSelector(selectIsEditable);
   const layouts = useSelector(selectLayouts);
+  const content = useSelector(selectContent);
 
   const { data: document, isLoading, isError } = useDocumentQuery(documentId);
 
@@ -26,14 +30,14 @@ export const useDocument = (documentId: string) => {
 
   useEffect(() => {
     if (document) {
-      dispatch(
-        setTileLayout(convertDocumentToLayout(document.tileLayout.layouts)),
-      );
+      const layouts = document.tileLayout.layouts;
+      const content = document.tileLayout.content;
+      dispatch(setTileLayout({ layouts, content }));
     }
   }, [dispatch, document]);
 
   return {
-    document,
+    content,
     layouts,
     isDocumentEditable,
     isLoading,
@@ -44,61 +48,39 @@ export const useDocument = (documentId: string) => {
 
 export const useDocumentGrid = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const layouts = useSelector(selectLayouts);
+  const content = useSelector(selectContent);
+  const isDocumentEditable = useSelector(selectIsEditable);
 
-  const handleLayoutChange = (layout: Layouts) => {
-    dispatch(setTileLayout(layout));
+  const handleLayoutChange = (layouts: Layouts) => {
+    dispatch(setTileLayoutOnLayoutChange(layouts));
   };
 
   const handleBreakPointChange = (breakPoint: LayoutSize) => {
     dispatch(setLayoutSize(breakPoint));
   };
 
+  const onNewTileClick = (type: EditorType) => {
+    dispatch(setIsEditable(true));
+    const tile: Layout = {
+      i: crypto.randomUUID().toString(),
+      x: Infinity,
+      y: Infinity,
+      w: 2,
+      h: 2,
+      static: !isDocumentEditable,
+    };
+
+    const content: TileContent = {
+      editorType: type,
+    };
+
+    dispatch(addTile({ tile, content }));
+  };
+
   return {
     handleLayoutChange,
     handleBreakPointChange,
+    onNewTileClick,
   };
-};
-
-const convertDocumentToLayout = (
-  tileLayout: Record<LayoutSize, Tile[]>,
-): Layouts => {
-  const layouts: Layouts = {
-    lg: tileLayout["lg"].map((tile) => ({
-      i: tile.id,
-      x: tile.xPosition,
-      y: tile.yPosition,
-      h: tile.height,
-      w: tile.width,
-    })),
-    md: tileLayout["md"].map((tile) => ({
-      i: tile.id,
-      x: tile.xPosition,
-      y: tile.yPosition,
-      h: tile.height,
-      w: tile.width,
-    })),
-    sm: tileLayout["sm"].map((tile) => ({
-      i: tile.id,
-      x: tile.xPosition,
-      y: tile.yPosition,
-      h: tile.height,
-      w: tile.width,
-    })),
-    xs: tileLayout["xs"].map((tile) => ({
-      i: tile.id,
-      x: tile.xPosition,
-      y: tile.yPosition,
-      h: tile.height,
-      w: tile.width,
-    })),
-    xxs: tileLayout["xxs"].map((tile) => ({
-      i: tile.id,
-      x: tile.xPosition,
-      y: tile.yPosition,
-      h: tile.height,
-      w: tile.width,
-    })),
-  };
-
-  return setLayoutEditMode(layouts, false);
 };

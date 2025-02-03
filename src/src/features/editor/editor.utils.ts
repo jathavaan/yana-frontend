@@ -1,5 +1,4 @@
-﻿import { EditorType } from "@features/editor/editor.types.ts";
-import Document from "@tiptap/extension-document";
+﻿import Document from "@tiptap/extension-document";
 import { Extensions } from "@tiptap/react";
 import { History } from "@tiptap/extension-history";
 import Text from "@tiptap/extension-text";
@@ -29,9 +28,9 @@ import { all, createLowlight } from "lowlight";
 import { HorizontalRule } from "@tiptap/extension-horizontal-rule";
 import TaskList from "@tiptap/extension-task-list";
 import { TaskItem } from "@tiptap/extension-task-item";
-import { StarterKit } from "@tiptap/starter-kit";
 import { Gapcursor } from "@tiptap/extension-gapcursor";
 import { Dropcursor } from "@tiptap/extension-dropcursor";
+import { EditorType } from "@shared/types";
 
 export const getEditorExtensions = (type: EditorType): Extensions => {
   const extensions: Extensions = [Document, History];

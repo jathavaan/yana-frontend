@@ -12,7 +12,7 @@ import { LayoutSize } from "@shared/types";
 
 export const Document = () => {
   const {
-    document,
+    content,
     layouts,
     isDocumentEditable,
     isLoading,
@@ -20,7 +20,8 @@ export const Document = () => {
     onEditDocumentClick,
   } = useDocument("document-id");
 
-  const { handleLayoutChange, handleBreakPointChange } = useDocumentGrid();
+  const { handleLayoutChange, handleBreakPointChange, onNewTileClick } =
+    useDocumentGrid();
   return (
     <>
       {isError && <div>Error</div>}
@@ -33,6 +34,13 @@ export const Document = () => {
         sx={{
           mb: 3,
           mt: 3,
+        }}
+      />
+      <Button
+        buttonText="Add tile"
+        onClick={() => onNewTileClick("code")}
+        sx={{
+          mb: 3,
         }}
       />
       <StyledDocumentGrid
@@ -49,12 +57,12 @@ export const Document = () => {
         }
         resizeHandles={["n", "s", "e", "w"]}
       >
-        {document?.tileLayout.layouts["lg"].map((tile) => (
-          <Tile key={tile.id} isEditable={isDocumentEditable}>
+        {layouts["lg"].map((layout) => (
+          <Tile key={layout.i} isEditable={isDocumentEditable}>
             <Editor
-              id={tile.id}
+              id={layout.i}
               editorType={"all"}
-              content={tile.content}
+              content={content[layout.i]?.content ?? "N/A"}
               isEditable={isDocumentEditable}
             />
           </Tile>

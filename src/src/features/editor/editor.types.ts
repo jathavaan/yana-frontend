@@ -1,21 +1,4 @@
-﻿export type EditorType =
-  | "all"
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6"
-  | "p"
-  | "blockquote"
-  | "code"
-  | "pre"
-  | "ul"
-  | "ol"
-  | "tl"
-  | "a"
-  | "img"
-  | "table";
+﻿import { EditorType } from "@shared/types";
 
 export interface EditorProps {
   id: string;

@@ -2,11 +2,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@shared/stores";
 import { Layout, Layouts } from "react-grid-layout";
-import { LayoutSize } from "@shared/types";
-import { setLayoutEditMode } from "@features/document/document.utils.ts";
+import { LayoutSize, TileContent, TileLayout } from "@shared/types";
+import {
+  createReactGridLayouts,
+  setLayoutEditMode,
+} from "@features/document/document.utils.ts";
 
 const initialState: DocumentState = {
   layoutSize: undefined,
+  content: {},
   layouts: {
     lg: [],
     md: [],
@@ -24,15 +28,34 @@ export const documentSlice = createSlice({
     setLayoutSize: (state, action: PayloadAction<LayoutSize>) => {
       state.layoutSize = action.payload;
     },
-    setTileLayout: (state, action: PayloadAction<Layouts>) => {
+    setTileLayout: (
+      state,
+      action: PayloadAction<{
+        layouts: Record<LayoutSize, TileLayout[]>;
+        content: Record<string, TileContent>;
+      }>,
+    ) => {
+      const { layouts, content } = action.payload;
+      state.layouts = createReactGridLayouts(layouts);
+
+      state.layouts["lg"].map((layout) => {
+        state.content[layout.i] = content[layout.i];
+      });
+    },
+    setTileLayoutOnLayoutChange: (state, action: PayloadAction<Layouts>) => {
       state.layouts = action.payload;
     },
     addTile: (
       state,
-      action: PayloadAction<{ size: LayoutSize; tile: Layout }>,
+      action: PayloadAction<{ tile: Layout; content: TileContent }>,
     ) => {
-      const { size, tile } = action.payload;
-      state.layouts[size].push(tile);
+      const { tile, content } = action.payload;
+      state.layouts["lg"].push(tile);
+      state.layouts["md"].push(tile);
+      state.layouts["sm"].push(tile);
+      state.layouts["xs"].push(tile);
+      state.layouts["xxs"].push(tile);
+      state.content[tile.i] = content;
     },
     removeTile: (state, action: PayloadAction<string>) => {
       state.layouts["lg"] = state.layouts["lg"].filter(
@@ -59,19 +82,27 @@ export const documentSlice = createSlice({
       state.isEditable = !state.isEditable;
       state.layouts = setLayoutEditMode(state.layouts, state.isEditable);
     },
+    setIsEditable: (state, action: PayloadAction<boolean>) => {
+      state.isEditable = action.payload;
+      state.layouts = setLayoutEditMode(state.layouts, state.isEditable);
+    },
   },
 });
 
 export const {
   setLayoutSize,
   setTileLayout,
+  setTileLayoutOnLayoutChange,
   addTile,
   removeTile,
   toggleIsEditable,
+  setIsEditable,
 } = documentSlice.actions;
 
 export const selectLayouts = (state: RootState) =>
   state.documentReducer.layouts;
+export const selectContent = (state: RootState) =>
+  state.documentReducer.content;
 export const selectLayoutSize = (state: RootState) =>
   state.documentReducer.layoutSize;
 export const selectTileLayout = (state: RootState, size: LayoutSize) =>
