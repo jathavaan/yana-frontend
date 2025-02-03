@@ -13,6 +13,7 @@ import {
 } from "@features/editor/editor.slice.ts";
 import { getEditorExtensions } from "@features/editor/editor.utils.ts";
 import { EditorType } from "@shared/types";
+import { setDocumentContent } from "@features/document";
 
 export const useTileEditor = (
   id: string,
@@ -56,6 +57,16 @@ export const useTileEditor = (
       setEditorContent({
         id: id,
         content: content,
+      }),
+    );
+
+    dispatch(
+      setDocumentContent({
+        id: id,
+        content: {
+          editorType: type,
+          content: content,
+        },
       }),
     );
   };

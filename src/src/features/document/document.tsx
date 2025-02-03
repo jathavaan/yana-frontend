@@ -57,16 +57,20 @@ export const Document = () => {
         }
         resizeHandles={["n", "s", "e", "w"]}
       >
-        {layouts["lg"].map((layout) => (
-          <Tile key={layout.i} isEditable={isDocumentEditable}>
-            <Editor
-              id={layout.i}
-              editorType={"all"}
-              content={content[layout.i]?.content ?? "N/A"}
-              isEditable={isDocumentEditable}
-            />
-          </Tile>
-        ))}
+        {layouts["lg"].length !== 0 ? (
+          layouts["lg"].map((layout) => (
+            <Tile key={layout.i} isEditable={isDocumentEditable}>
+              <Editor
+                id={layout.i}
+                editorType={content[layout.i].editorType}
+                content={content[layout.i]?.content ?? "N/A"}
+                isEditable={isDocumentEditable}
+              />
+            </Tile>
+          ))
+        ) : (
+          <p>This document is empty!</p>
+        )}
       </StyledDocumentGrid>
     </>
   );

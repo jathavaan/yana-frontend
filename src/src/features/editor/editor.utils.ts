@@ -23,7 +23,7 @@ import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
 import { Blockquote } from "@tiptap/extension-blockquote";
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 import { HorizontalRule } from "@tiptap/extension-horizontal-rule";
 import TaskList from "@tiptap/extension-task-list";
@@ -33,7 +33,15 @@ import { Dropcursor } from "@tiptap/extension-dropcursor";
 import { EditorType } from "@shared/types";
 
 export const getEditorExtensions = (type: EditorType): Extensions => {
-  const extensions: Extensions = [Document, History];
+  const extensions: Extensions = [
+    Document,
+    History,
+    Text.configure({
+      HTMLAttributes: {
+        class: "tt-text",
+      },
+    }),
+  ];
   const textExtensions: Extensions = [
     // Nodes
     Paragraph.configure({
@@ -41,11 +49,7 @@ export const getEditorExtensions = (type: EditorType): Extensions => {
         class: "tt-p",
       },
     }),
-    Text.configure({
-      HTMLAttributes: {
-        class: "tt-text",
-      },
-    }),
+
     Typography,
     Mention.configure({
       HTMLAttributes: {
@@ -309,6 +313,16 @@ export const getEditorExtensions = (type: EditorType): Extensions => {
           nested: true,
           HTMLAttributes: {
             class: "tt-task-item",
+          },
+        }),
+      );
+      break;
+    case "a":
+      extensions.push(
+        ...textExtensions,
+        Link.configure({
+          HTMLAttributes: {
+            class: "tt-link",
           },
         }),
       );

@@ -4,7 +4,7 @@ import { LayoutSize, TileContent, TileLayout } from "@shared/types";
 export const getDocumentById = async (documentId: string) => {
   const content: Record<string, TileContent> = {
     "tile-id-1": {
-      content: `<h2>Welcome to My Grid</h2><p>This is a beautifully structured tile using <strong>React Grid Layout</strong>.</p>`,
+      content: `<h1 class="tt-heading">Lorem ipsum dolor sit amet.</h1><p class="tt-p">Praesent ut elit dapibus, vulputate magna a, cursus massa. Morbi sed tortor purus. Pellentesque mauris justo, maximus in malesuada non, mollis at diam. Integer efficitur placerat felis venenatis suscipit. Phasellus mattis sed justo vel molestie. Nullam lectus neque, tincidunt nec consequat sed, porttitor eu neque. Pellentesque fringilla imperdiet nulla non mattis. Duis id lorem dictum, varius augue eget, porttitor enim. Aliquam vulputate iaculis dui, nec euismod sapien. Morbi mi massa, placerat at dui in, varius sodales elit. Vestibulum vel porttitor ipsum, tincidunt tincidunt tellus. Praesent tincidunt semper feugiat. Nam pharetra commodo metus ac ullamcorper.</p><blockquote class="tt-blockquote"><p class="tt-p">Suspendisse tincidunt malesuada ligula at luctus. Ut pulvinar lectus nisl, pulvinar scelerisque mauris egestas vel. Maecenas elit mi, tempus id suscipit eu, elementum vitae tortor. Cras nulla lectus, porta at justo vitae, semper laoreet nisl. Quisque lorem augue, euismod eu dolor sit amet, malesuada consectetur ligula. Phasellus molestie lectus purus, eu vulputate risus cursus ac. Morbi et sodales magna, id cursus dui. Nulla interdum tellus vel convallis hendrerit. In at tellus faucibus, maximus quam sed, lobortis nibh. Sed pretium sapien sed nisl fringilla mollis id non turpis. Nullam facilisis non leo in congue. Integer at nulla vitae lorem venenatis faucibus. Etiam sit amet velit ut dui molestie interdum. Nulla fermentum suscipit mi, non rhoncus massa pharetra mattis.</p></blockquote><p class="tt-p">Duis dui mi, laoreet in lorem ac, mollis ultrices est. Nullam sed tristique metus. Nam bibendum purus et lectus lobortis, non lobortis lectus cursus. Vivamus a sem non odio tempus lacinia vitae et elit. Nunc maximus leo eget est lobortis elementum eu et lorem. Nulla laoreet placerat purus eget consequat. Quisque vel orci condimentum augue dignissim suscipit. Pellentesque eu porttitor diam, at ultrices nunc.</p><pre class="tt-code-block"><code class="language-powershell">dotnet ef database uppdate --startup-project Api --project Persistence --context DbContext</code></pre><p class="tt-p"></p>`,
       editorType: "all",
     },
     "tile-id-2": {
@@ -18,10 +18,6 @@ export const getDocumentById = async (documentId: string) => {
     "tile-id-4": {
       content: `<ul><li>✔ Feature 1: Dynamic Layout</li><li>✔ Feature 2: Responsive Grid</li><li>✔ Feature 3: Interactive Content</li></ul>`,
       editorType: "ul",
-    },
-    "tile-id-5": {
-      content: `<form><label for="name">Name:</label><input type="text" id="name" placeholder="Enter your name" /><button type="submit">Submit</button></form>`,
-      editorType: "all",
     },
     "tile-id-6": {
       content: `<pre><code>const greeting = "Hello, World!";console.log(greeting);</code></pre>`,
@@ -43,36 +39,29 @@ export const getDocumentById = async (documentId: string) => {
         tileId: "tile-id-1",
         xPosition: 0,
         yPosition: 0,
-        width: 3,
-        height: 3,
+        width: 10,
+        height: 7,
       },
       {
         tileId: "tile-id-2",
-        xPosition: 3,
+        xPosition: 10,
         yPosition: 0,
         width: 8,
         height: 6,
       },
       {
         tileId: "tile-id-3",
-        xPosition: 11,
+        xPosition: 18,
         yPosition: 0,
         width: 4,
         height: 3,
       },
       {
         tileId: "tile-id-4",
-        xPosition: 0,
-        yPosition: 3,
+        xPosition: 22,
+        yPosition: 0,
         width: 3,
         height: 2,
-      },
-      {
-        tileId: "tile-id-5",
-        xPosition: 0,
-        yPosition: 5,
-        width: 3,
-        height: 1,
       },
       {
         tileId: "tile-id-6",
@@ -112,15 +101,15 @@ export const getDocumentById = async (documentId: string) => {
   } as DocumentResponse;
 
   /*return await sendApiRequest<
-              GetDocumentByIdQueryParameters,
-              undefined,
-              DocumentResponse
-            >({
-              endpoint: "Document",
-              requestMethod: "GET",
-              token: getUserToken(),
-              parameters: {
-                documentId: documentId,
-              },
-            });*/
+                GetDocumentByIdQueryParameters,
+                undefined,
+                DocumentResponse
+              >({
+                endpoint: "Document",
+                requestMethod: "GET",
+                token: getUserToken(),
+                parameters: {
+                  documentId: documentId,
+                },
+              });*/
 };

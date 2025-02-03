@@ -86,6 +86,13 @@ export const documentSlice = createSlice({
       state.isEditable = action.payload;
       state.layouts = setLayoutEditMode(state.layouts, state.isEditable);
     },
+    setDocumentContent: (
+      state,
+      action: PayloadAction<{ id: string; content: TileContent }>,
+    ) => {
+      const { id, content } = action.payload;
+      state.content[id] = content;
+    },
   },
 });
 
@@ -97,6 +104,7 @@ export const {
   removeTile,
   toggleIsEditable,
   setIsEditable,
+  setDocumentContent,
 } = documentSlice.actions;
 
 export const selectLayouts = (state: RootState) =>

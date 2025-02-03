@@ -14,6 +14,7 @@ export const Editor = ({
     content,
     isEditable,
   );
+
   return (
     <>
       {isEditorSavePending && <div>Loading...</div>}
