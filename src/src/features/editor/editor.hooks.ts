@@ -11,8 +11,8 @@ import {
   setEditorContent,
   setSavedEditorContent,
 } from "@features/editor/editor.slice.ts";
-import { EditorType } from "@features/editor/editor.types.ts";
 import { getEditorExtensions } from "@features/editor/editor.utils.ts";
+import { EditorType } from "@shared/types";
 
 export const useTileEditor = (
   id: string,

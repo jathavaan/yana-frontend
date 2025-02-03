@@ -36,25 +36,122 @@ export const getEditorExtensions = (type: EditorType): Extensions => {
   const extensions: Extensions = [Document, History];
   const textExtensions: Extensions = [
     // Nodes
-    Paragraph,
-    Text,
+    Paragraph.configure({
+      HTMLAttributes: {
+        class: "tt-p",
+      },
+    }),
+    Text.configure({
+      HTMLAttributes: {
+        class: "tt-text",
+      },
+    }),
     Typography,
-    Mention,
-    HorizontalRule,
+    Mention.configure({
+      HTMLAttributes: {
+        class: "tt-mention",
+      },
+    }),
+    HorizontalRule.configure({
+      HTMLAttributes: {
+        class: "tt-horizontal-rule",
+      },
+    }),
 
     // Marks
-    Bold,
-    Highlight,
-    Italic,
-    Link,
-    Strike,
-    Subscript,
-    Superscript,
-    Underline,
+    Bold.configure({
+      HTMLAttributes: {
+        class: "tt-bold",
+      },
+    }),
+    Highlight.configure({
+      HTMLAttributes: {
+        class: "tt-highlight",
+      },
+    }),
+    Italic.configure({
+      HTMLAttributes: {
+        class: "tt-italic",
+      },
+    }),
+    Link.configure({
+      HTMLAttributes: {
+        class: "tt-link",
+      },
+    }),
+    Strike.configure({
+      HTMLAttributes: {
+        class: "tt-strike",
+      },
+    }),
+    Subscript.configure({
+      HTMLAttributes: {
+        class: "tt-subscript",
+      },
+    }),
+    Superscript.configure({
+      HTMLAttributes: {
+        class: "tt-superscript",
+      },
+    }),
+    Underline.configure({
+      HTMLAttributes: {
+        class: "tt-underline",
+      },
+    }),
 
     // Extensions
-    Gapcursor,
+    Gapcursor.configure({
+      HTMLAttributes: {
+        class: "tt-gapcursor",
+      },
+    }),
     Dropcursor,
+  ];
+
+  const tableExtensions: Extensions = [
+    Table.configure({
+      HTMLAttributes: {
+        class: "tt-table",
+      },
+    }),
+    TableHeader.configure({
+      HTMLAttributes: {
+        class: "tt-table-header",
+      },
+    }),
+    TableCell.configure({
+      HTMLAttributes: {
+        class: "tt-table-cell",
+      },
+    }),
+    TableRow.configure({
+      HTMLAttributes: {
+        class: "tt-table-row",
+      },
+    }),
+  ];
+
+  const listExtensions: Extensions = [
+    ListItem.configure({
+      HTMLAttributes: {
+        class: "tt-list-item",
+      },
+    }),
+  ];
+
+  const taskListExtensions: Extensions = [
+    TaskList.configure({
+      HTMLAttributes: {
+        class: "tt-task-list",
+      },
+    }),
+    TaskItem.configure({
+      HTMLAttributes: {
+        class: "tt-task-item",
+      },
+      nested: true,
+    }),
   ];
 
   const lowlight = createLowlight(all);
@@ -63,73 +160,170 @@ export const getEditorExtensions = (type: EditorType): Extensions => {
     case "all":
       extensions.push(
         ...textExtensions,
-        Blockquote,
-        CodeBlockLowlight.configure({ lowlight: lowlight }),
+        ...tableExtensions,
+        ...listExtensions,
+        ...taskListExtensions,
+        Blockquote.configure({
+          HTMLAttributes: {
+            class: "tt-blockquote",
+          },
+        }),
+        CodeBlockLowlight.configure({
+          HTMLAttributes: {
+            class: "tt-code-block",
+          },
+          lowlight: lowlight,
+        }),
         Heading.configure({
+          HTMLAttributes: {
+            class: "tt-heading",
+          },
           levels: [1, 2, 3, 4, 5],
         }),
-        ListItem,
-        OrderedList,
-        BulletList,
-        TaskList,
-        TaskItem,
-        Table,
-        TableHeader,
-        TableCell,
-        TableRow,
-        Image,
+        OrderedList.configure({
+          HTMLAttributes: {
+            class: "tt-ordered-list",
+          },
+        }),
+        BulletList.configure({
+          HTMLAttributes: {
+            class: "tt-bullet-list",
+          },
+        }),
+        Image.configure({
+          HTMLAttributes: {
+            class: "tt-image",
+          },
+        }),
       );
       break;
     case "h1":
-      extensions.push(...textExtensions, Heading.configure({ levels: [1] }));
+      extensions.push(
+        ...textExtensions,
+        Heading.configure({
+          levels: [1],
+          HTMLAttributes: {
+            class: "tt-heading",
+          },
+        }),
+      );
       break;
     case "h2":
-      extensions.push(...textExtensions, Heading.configure({ levels: [2] }));
+      extensions.push(
+        ...textExtensions,
+        Heading.configure({
+          levels: [2],
+          HTMLAttributes: {
+            class: "tt-heading",
+          },
+        }),
+      );
       break;
     case "h3":
-      extensions.push(...textExtensions, Heading.configure({ levels: [3] }));
+      extensions.push(
+        ...textExtensions,
+        Heading.configure({
+          levels: [3],
+          HTMLAttributes: {
+            class: "tt-heading",
+          },
+        }),
+      );
       break;
     case "h4":
-      extensions.push(...textExtensions, Heading.configure({ levels: [4] }));
+      extensions.push(
+        ...textExtensions,
+        Heading.configure({
+          levels: [4],
+          HTMLAttributes: {
+            class: "tt-heading",
+          },
+        }),
+      );
       break;
     case "h5":
-      extensions.push(...textExtensions, Heading.configure({ levels: [5] }));
+      extensions.push(
+        ...textExtensions,
+        Heading.configure({
+          levels: [5],
+          HTMLAttributes: {
+            class: "tt-heading",
+          },
+        }),
+      );
       break;
     case "p":
-      extensions.push(...textExtensions, Paragraph);
+      extensions.push(
+        ...textExtensions,
+        Paragraph.configure({
+          HTMLAttributes: {
+            class: "tt-paragraph",
+          },
+        }),
+      );
       break;
     case "blockquote":
-      extensions.push(...textExtensions, Blockquote);
+      extensions.push(
+        ...textExtensions,
+        Blockquote.configure({
+          HTMLAttributes: {
+            class: "tt-blockquote",
+          },
+        }),
+      );
       break;
     case "code":
       extensions.push(CodeBlockLowlight.configure({ lowlight: lowlight }));
       break;
     case "ul":
-      extensions.push(...textExtensions, BulletList, ListItem);
+      extensions.push(
+        ...textExtensions,
+        ...listExtensions,
+        BulletList.configure({
+          HTMLAttributes: {
+            class: "tt-bullet-list",
+          },
+        }),
+      );
       break;
     case "ol":
-      extensions.push(...textExtensions, OrderedList, ListItem);
+      extensions.push(
+        ...textExtensions,
+        ...listExtensions,
+        OrderedList.configure({
+          HTMLAttributes: {
+            class: "tt-ordered-list",
+          },
+        }),
+      );
       break;
     case "tl":
       extensions.push(
         ...textExtensions,
-        TaskList,
+        TaskList.configure({
+          HTMLAttributes: {
+            class: "tt-task-list",
+          },
+        }),
         TaskItem.configure({
           nested: true,
+          HTMLAttributes: {
+            class: "tt-task-item",
+          },
         }),
       );
       break;
     case "img":
-      extensions.push(Image);
+      extensions.push(
+        Image.configure({
+          HTMLAttributes: {
+            class: "tt-image",
+          },
+        }),
+      );
       break;
     case "table":
-      extensions.push(
-        ...textExtensions,
-        Table,
-        TableCell,
-        TableHeader,
-        TableRow,
-      );
+      extensions.push(...textExtensions, ...tableExtensions);
   }
 
   return extensions;
