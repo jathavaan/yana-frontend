@@ -115,6 +115,7 @@ export const getEditorExtensions = (type: EditorType): Extensions => {
 
   const tableExtensions: Extensions = [
     Table.configure({
+      resizable: true,
       HTMLAttributes: {
         class: "tt-table",
       },
@@ -161,7 +162,7 @@ export const getEditorExtensions = (type: EditorType): Extensions => {
   const lowlight = createLowlight(all);
 
   switch (type) {
-    case "all":
+    case "any":
       extensions.push(
         ...textExtensions,
         ...tableExtensions,
@@ -341,4 +342,21 @@ export const getEditorExtensions = (type: EditorType): Extensions => {
   }
 
   return extensions;
+};
+
+export const getEditorClasses = (type: EditorType): string => {
+  const classes: string[] = ["tt-editor"];
+
+  switch (type) {
+    case "img":
+      classes.push("tt-editor-no-padding", "tt-editor-center-content");
+      break;
+    case "code":
+    case "blockquote":
+    case "table":
+      classes.push("tt-editor-no-padding");
+      break;
+  }
+
+  return classes.join(" ");
 };

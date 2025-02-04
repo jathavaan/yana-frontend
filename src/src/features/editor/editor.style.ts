@@ -8,7 +8,7 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
   display: "flex",
   height: "100%",
   width: "100%",
-  "& .ProseMirror": {
+  "& .tt-editor": {
     outline: "none",
     height: "100%",
     width: "100%",
@@ -17,6 +17,13 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     overflow: "auto",
     scrollbarWidth: "thin",
     scrollbarColor: `${theme.palette.primary.dark} transparent`,
+  },
+  "& .tt-editor-no-padding": {
+    padding: 0,
+  },
+  "& .tt-editor-center-content": {
+    display: "flex",
+    justifyContent: "center",
   },
   "& .tt-p, & .tt-paragraph": {
     marginBottom: theme.spacing(1),
@@ -50,12 +57,13 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     borderRadius: "4px",
   },
   "& .tt-link": {
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
     textDecoration: "underline",
     cursor: "pointer",
   },
   "& .tt-blockquote": {
-    borderLeft: `4px solid ${theme.palette.primary.main}`,
+    borderLeft: `2px solid ${theme.palette.text.secondary}`,
+    marginLeft: theme.spacing(2),
     paddingLeft: theme.spacing(1),
     fontStyle: "italic",
     color: theme.palette.text.secondary,
@@ -64,7 +72,7 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.light,
     color: theme.palette.secondary.contrastText,
     padding: theme.spacing(1),
-    borderRadius: "4px",
+    borderRadius: theme.shape.borderRadius,
     fontFamily: "monospace",
     overflowX: "auto",
   },
@@ -103,6 +111,7 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
   "& .tt-table": {
     borderCollapse: "collapse",
     width: "100%",
+    borderRadius: theme.shape.borderRadius,
   },
   "& .tt-table-header": {
     backgroundColor: theme.palette.primary.dark,
@@ -110,16 +119,28 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     fontWeight: "bold",
     padding: theme.spacing(1),
   },
+  "& .tt-table-header:first-of-type": {
+    borderTopLeftRadius: theme.shape.borderRadius,
+  },
+  "& .tt-table-header:last-of-type": {
+    borderTopRightRadius: theme.shape.borderRadius,
+  },
   "& .tt-table-cell": {
-    border: `1px solid ${theme.palette.divider}`,
     padding: theme.spacing(1),
   },
   "& .tt-table-row:nth-of-type(even)": {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.grey[200],
   },
-  "& .tt-gapcursor": {
-    display: "none",
+  "& .tt-table-row:nth-of-type(odd)": {
+    backgroundColor: theme.palette.grey[300],
   },
+  "& .tt-table-row:last-of-type td:first-of-type": {
+    borderBottomLeftRadius: theme.shape.borderRadius,
+  },
+  "& .tt-table-row:last-of-type td:last-of-type": {
+    borderBottomRightRadius: theme.shape.borderRadius,
+  },
+  "& .tt-gapcursor": {},
 }));
 
 // TODO: Create a bubble menu and menu for new line/block

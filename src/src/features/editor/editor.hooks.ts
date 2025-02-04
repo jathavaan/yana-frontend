@@ -11,15 +11,18 @@ import {
   setEditorContent,
   setSavedEditorContent,
 } from "@features/editor/editor.slice.ts";
-import { getEditorExtensions } from "@features/editor/editor.utils.ts";
+import {
+  getEditorClasses,
+  getEditorExtensions,
+} from "@features/editor/editor.utils.ts";
 import { EditorType } from "@shared/types";
 import { setDocumentContent } from "@features/document";
 
 export const useTileEditor = (
   id: string,
   type: EditorType,
-  initialContent: string,
   isEditable: boolean,
+  initialContent?: string,
 ) => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -35,9 +38,18 @@ export const useTileEditor = (
     extensions: getEditorExtensions(type),
     content: initialContent,
     editable: isEditable,
+    editorProps: {
+      attributes: {
+        class: getEditorClasses(type),
+      },
+    },
     onUpdate: ({ editor }) => onEditorUpdate(editor),
     onBlur: () => {
-      if (normalizeHTML(editorContent) === normalizeHTML(savedEditorContent)) {
+      if (
+        editorContent &&
+        savedEditorContent &&
+        normalizeHTML(editorContent) === normalizeHTML(savedEditorContent)
+      ) {
         return;
       }
 
@@ -93,8 +105,13 @@ export const useTileEditor = (
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      if (normalizeHTML(editorContent) === normalizeHTML(savedEditorContent))
+      if (
+        editorContent &&
+        savedEditorContent &&
+        normalizeHTML(editorContent) === normalizeHTML(savedEditorContent)
+      ) {
         return;
+      }
 
       onEditorSave(id);
     }, 5000);

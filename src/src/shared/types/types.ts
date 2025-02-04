@@ -1,7 +1,7 @@
 ﻿export type LayoutSize = "lg" | "md" | "sm" | "xs" | "xxs";
 
 export type EditorType =
-  | "all"
+  | "any"
   | "h1"
   | "h2"
   | "h3"

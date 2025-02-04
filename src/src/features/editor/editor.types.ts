@@ -3,10 +3,10 @@
 export interface EditorProps {
   id: string;
   editorType: EditorType;
-  content: string;
+  content?: string;
   isEditable: boolean;
 }
 
 export interface EditorState {
-  [id: string]: { content: string; savedContent: string };
+  [id: string]: { content?: string; savedContent?: string };
 }

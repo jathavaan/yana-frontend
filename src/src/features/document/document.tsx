@@ -38,7 +38,7 @@ export const Document = () => {
       />
       <Button
         buttonText="Add tile"
-        onClick={() => onNewTileClick("code")}
+        onClick={() => onNewTileClick("any")}
         sx={{
           mb: 3,
         }}
@@ -63,7 +63,7 @@ export const Document = () => {
               <Editor
                 id={layout.i}
                 editorType={content[layout.i].editorType}
-                content={content[layout.i]?.content ?? "N/A"}
+                content={content[layout.i]?.content}
                 isEditable={isDocumentEditable}
               />
             </Tile>

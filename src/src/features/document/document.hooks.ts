@@ -48,8 +48,6 @@ export const useDocument = (documentId: string) => {
 
 export const useDocumentGrid = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const layouts = useSelector(selectLayouts);
-  const content = useSelector(selectContent);
   const isDocumentEditable = useSelector(selectIsEditable);
 
   const handleLayoutChange = (layouts: Layouts) => {
@@ -64,7 +62,7 @@ export const useDocumentGrid = () => {
     dispatch(setIsEditable(true));
     const tile: Layout = {
       i: crypto.randomUUID().toString(),
-      x: Infinity,
+      x: 0,
       y: Infinity,
       w: 2,
       h: 2,

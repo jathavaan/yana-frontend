@@ -12,8 +12,8 @@ export const editorSlice = createSlice({
       state,
       action: PayloadAction<{
         id: string;
-        content: string;
-        savedContent: string;
+        content?: string;
+        savedContent?: string;
       }>,
     ) => {
       const { id, content, savedContent } = action.payload;
@@ -28,7 +28,7 @@ export const editorSlice = createSlice({
     },
     setSavedEditorContent: (
       state,
-      action: PayloadAction<{ id: string; savedContent: string }>,
+      action: PayloadAction<{ id: string; savedContent?: string }>,
     ) => {
       const { id, savedContent } = action.payload;
       if (state[id]) state[id].savedContent = savedContent;

@@ -11,8 +11,8 @@ export const Editor = ({
   const { editor, isEditorSavePending, isEditorSaveError } = useTileEditor(
     id,
     editorType,
-    content,
     isEditable,
+    content,
   );
 
   return (
