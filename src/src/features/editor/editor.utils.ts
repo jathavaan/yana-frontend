@@ -319,14 +319,7 @@ export const getEditorExtensions = (type: EditorType): Extensions => {
       );
       break;
     case "a":
-      extensions.push(
-        ...textExtensions,
-        Link.configure({
-          HTMLAttributes: {
-            class: "tt-link",
-          },
-        }),
-      );
+      extensions.push(...textExtensions);
       break;
     case "img":
       extensions.push(
@@ -349,14 +342,17 @@ export const getEditorClasses = (type: EditorType): string => {
 
   switch (type) {
     case "img":
-      classes.push("tt-editor-no-padding", "tt-editor-center-content");
+      classes.push("tt-editor-center-content");
       break;
     case "code":
     case "blockquote":
     case "table":
-      classes.push("tt-editor-no-padding");
+      // classes.push("tt-editor-no-padding");
       break;
   }
 
   return classes.join(" ");
 };
+
+export const calculateNumberOfRows = (contentHeight: number) =>
+  Math.ceil(contentHeight / parseInt(import.meta.env.VITE_TILE_HEIGHT));

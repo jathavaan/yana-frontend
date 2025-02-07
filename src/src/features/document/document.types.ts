@@ -16,4 +16,5 @@ export interface DocumentState {
   content: Record<string, TileContent>;
   layouts: Layouts;
   isEditable: boolean;
+  tileHeight: number;
 }

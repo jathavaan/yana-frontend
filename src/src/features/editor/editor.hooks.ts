@@ -1,5 +1,11 @@
 ﻿import { Editor, useEditor } from "@tiptap/react";
-import { useCallback, useEffect } from "react";
+import {
+  RefObject,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from "react";
 import { AppDispatch, RootState } from "@shared/stores";
 import { useDispatch, useSelector } from "react-redux";
 import { normalizeHTML } from "@shared/html";
@@ -12,11 +18,12 @@ import {
   setSavedEditorContent,
 } from "@features/editor/editor.slice.ts";
 import {
+  calculateNumberOfRows,
   getEditorClasses,
   getEditorExtensions,
 } from "@features/editor/editor.utils.ts";
 import { EditorType } from "@shared/types";
-import { setDocumentContent } from "@features/document";
+import { setDocumentContent, setTileRows } from "@features/document";
 
 export const useTileEditor = (
   id: string,
@@ -124,4 +131,24 @@ export const useTileEditor = (
   }, [editor, isEditable]);
 
   return { editor, isEditorSavePending, isEditorSaveError };
+};
+
+export const useTileEditorRef = (tileId: string) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const ref = useRef<HTMLDivElement>() as RefObject<HTMLDivElement>;
+  const contentHeight = ref.current?.scrollHeight;
+  const editorContent = useSelector((state: RootState) =>
+    selectEditorContent(state, tileId),
+  );
+
+  useLayoutEffect(() => {
+    if (contentHeight) {
+      const numberOfRows = calculateNumberOfRows(contentHeight);
+      console.log(tileId, contentHeight, numberOfRows);
+      dispatch(setTileRows({ tileId, numberOfRows }));
+    }
+  }, [editorContent, dispatch, tileId, contentHeight]);
+
+  return { ref };
 };

@@ -1,5 +1,8 @@
 ﻿import { EditorProps } from "@features/editor/editor.types.ts";
-import { useTileEditor } from "@features/editor/editor.hooks.ts";
+import {
+  useTileEditor,
+  useTileEditorRef,
+} from "@features/editor/editor.hooks.ts";
 import { StyledEditorContent } from "@features/editor/editor.style.ts";
 
 export const Editor = ({
@@ -15,11 +18,13 @@ export const Editor = ({
     content,
   );
 
+  const { ref } = useTileEditorRef(id);
+
   return (
     <>
       {isEditorSavePending && <div>Loading...</div>}
       {isEditorSaveError && <div>Error saving tile</div>}
-      <StyledEditorContent key={id} editor={editor} />
+      <StyledEditorContent key={id} editor={editor} ref={ref} />
     </>
   );
 };

@@ -19,6 +19,7 @@ const initialState: DocumentState = {
     xxs: [],
   },
   isEditable: false,
+  tileHeight: 0,
 };
 
 export const documentSlice = createSlice({
@@ -44,6 +45,27 @@ export const documentSlice = createSlice({
     },
     setTileLayoutOnLayoutChange: (state, action: PayloadAction<Layouts>) => {
       state.layouts = action.payload;
+    },
+    setTileRows: (
+      state,
+      action: PayloadAction<{ tileId: string; numberOfRows: number }>,
+    ) => {
+      const { tileId, numberOfRows } = action.payload;
+      if (
+        state.layouts["lg"].find((tile) => tile.i === tileId)?.h ===
+        numberOfRows
+      ) {
+        return;
+      }
+
+      Object.keys(state.layouts).forEach((key) => {
+        const layoutSize = key as LayoutSize;
+        state.layouts[layoutSize] = state.layouts[layoutSize].map((tile) =>
+          tile.i === tileId
+            ? { ...tile, h: numberOfRows, minH: numberOfRows }
+            : tile,
+        );
+      });
     },
     addTile: (
       state,
@@ -93,6 +115,9 @@ export const documentSlice = createSlice({
       const { id, content } = action.payload;
       state.content[id] = content;
     },
+    setTileHeight: (state, action: PayloadAction<number>) => {
+      state.tileHeight = action.payload;
+    },
   },
 });
 
@@ -105,6 +130,8 @@ export const {
   toggleIsEditable,
   setIsEditable,
   setDocumentContent,
+  setTileHeight,
+  setTileRows,
 } = documentSlice.actions;
 
 export const selectLayouts = (state: RootState) =>
@@ -117,5 +144,7 @@ export const selectTileLayout = (state: RootState, size: LayoutSize) =>
   state.documentReducer.layouts[size];
 export const selectIsEditable = (state: RootState) =>
   state.documentReducer.isEditable;
+export const selectTileHeight = (state: RootState) =>
+  state.documentReducer.tileHeight;
 
 export const documentReducer = documentSlice.reducer;

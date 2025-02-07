@@ -4,8 +4,10 @@ import {
   selectContent,
   selectIsEditable,
   selectLayouts,
+  selectTileHeight,
   setIsEditable,
   setLayoutSize,
+  setTileHeight,
   setTileLayout,
   setTileLayoutOnLayoutChange,
   toggleIsEditable,
@@ -49,6 +51,7 @@ export const useDocument = (documentId: string) => {
 export const useDocumentGrid = () => {
   const dispatch = useDispatch<AppDispatch>();
   const isDocumentEditable = useSelector(selectIsEditable);
+  const tileHeight = useSelector(selectTileHeight);
 
   const handleLayoutChange = (layouts: Layouts) => {
     dispatch(setTileLayoutOnLayoutChange(layouts));
@@ -76,9 +79,14 @@ export const useDocumentGrid = () => {
     dispatch(addTile({ tile, content }));
   };
 
+  useEffect(() => {
+    dispatch(setTileHeight(parseInt(import.meta.env.VITE_TILE_HEIGHT)));
+  }, [dispatch]);
+
   return {
     handleLayoutChange,
     handleBreakPointChange,
     onNewTileClick,
+    tileHeight,
   };
 };

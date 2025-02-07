@@ -45,50 +45,301 @@ export const getDocumentById = async (documentId: string) => {
       {
         tileId: "tile-id-2", // Positioned to the right of tile-id-1
         xPosition: 12,
-        yPosition: 0,
+        yPosition: Infinity,
         width: 8,
         height: 6,
       },
       {
         tileId: "tile-id-3", // Positioned in the top-right corner
         xPosition: 20,
-        yPosition: 0,
+        yPosition: Infinity,
         width: 4,
         height: 3,
       },
       {
         tileId: "tile-id-4", // Below tile-id-3
         xPosition: 20,
-        yPosition: 3,
+        yPosition: Infinity,
         width: 4,
         height: 3,
       },
       {
         tileId: "tile-id-6", // Positioned below tile-id-1
         xPosition: 0,
-        yPosition: 7,
+        yPosition: Infinity,
         width: 6,
         height: 3,
       },
       {
         tileId: "tile-id-7", // Positioned to the right of tile-id-6
         xPosition: 6,
-        yPosition: 7,
+        yPosition: Infinity,
         width: 7,
         height: 3,
       },
       {
         tileId: "tile-id-8", // Positioned below tile-id-2, filling the remaining space
         xPosition: 13,
-        yPosition: 6,
+        yPosition: Infinity,
         width: 7,
         height: 4,
       },
     ],
-    md: [],
-    sm: [],
-    xs: [],
-    xxs: [],
+    md: [
+      {
+        tileId: "tile-id-1", // Largest tile placed at the top-left
+        xPosition: 0,
+        yPosition: 0,
+        width: 12,
+        height: 7,
+      },
+      {
+        tileId: "tile-id-2", // Positioned to the right of tile-id-1
+        xPosition: 12,
+        yPosition: Infinity,
+        width: 8,
+        height: 6,
+      },
+      {
+        tileId: "tile-id-3", // Positioned in the top-right corner
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-4", // Below tile-id-3
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-6", // Positioned below tile-id-1
+        xPosition: 0,
+        yPosition: Infinity,
+        width: 6,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-7", // Positioned to the right of tile-id-6
+        xPosition: 6,
+        yPosition: Infinity,
+        width: 7,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-8", // Positioned below tile-id-2, filling the remaining space
+        xPosition: 13,
+        yPosition: Infinity,
+        width: 7,
+        height: 4,
+      },
+    ],
+    sm: [
+      {
+        tileId: "tile-id-1", // Largest tile placed at the top-left
+        xPosition: 0,
+        yPosition: 0,
+        width: 12,
+        height: 7,
+      },
+      {
+        tileId: "tile-id-2", // Positioned to the right of tile-id-1
+        xPosition: 12,
+        yPosition: Infinity,
+        width: 8,
+        height: 6,
+      },
+      {
+        tileId: "tile-id-3", // Positioned in the top-right corner
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-4", // Below tile-id-3
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-6", // Positioned below tile-id-1
+        xPosition: 0,
+        yPosition: Infinity,
+        width: 6,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-7", // Positioned to the right of tile-id-6
+        xPosition: 6,
+        yPosition: Infinity,
+        width: 7,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-8", // Positioned below tile-id-2, filling the remaining space
+        xPosition: 13,
+        yPosition: Infinity,
+        width: 7,
+        height: 4,
+      },
+    ],
+    xs: [
+      {
+        tileId: "tile-id-1", // Largest tile placed at the top-left
+        xPosition: 0,
+        yPosition: 0,
+        width: 12,
+        height: 7,
+      },
+      {
+        tileId: "tile-id-2", // Positioned to the right of tile-id-1
+        xPosition: 12,
+        yPosition: Infinity,
+        width: 8,
+        height: 6,
+      },
+      {
+        tileId: "tile-id-3", // Positioned in the top-right corner
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-4", // Below tile-id-3
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-6", // Positioned below tile-id-1
+        xPosition: 0,
+        yPosition: Infinity,
+        width: 6,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-7", // Positioned to the right of tile-id-6
+        xPosition: 6,
+        yPosition: Infinity,
+        width: 7,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-8", // Positioned below tile-id-2, filling the remaining space
+        xPosition: 13,
+        yPosition: Infinity,
+        width: 7,
+        height: 4,
+      },
+    ],
+    xxs: [
+      {
+        tileId: "tile-id-1", // Largest tile placed at the top-left
+        xPosition: 0,
+        yPosition: 0,
+        width: 12,
+        height: 7,
+      },
+      {
+        tileId: "tile-id-2", // Positioned to the right of tile-id-1
+        xPosition: 12,
+        yPosition: Infinity,
+        width: 8,
+        height: 6,
+      },
+      {
+        tileId: "tile-id-3", // Positioned in the top-right corner
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-4", // Below tile-id-3
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-6", // Positioned below tile-id-1
+        xPosition: 0,
+        yPosition: Infinity,
+        width: 6,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-7", // Positioned to the right of tile-id-6
+        xPosition: 6,
+        yPosition: Infinity,
+        width: 7,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-8", // Positioned below tile-id-2, filling the remaining space
+        xPosition: 13,
+        yPosition: Infinity,
+        width: 7,
+        height: 4,
+      },
+    ],
+    xs: [
+      {
+        tileId: "tile-id-1", // Largest tile placed at the top-left
+        xPosition: 0,
+        yPosition: 0,
+        width: 12,
+        height: 7,
+      },
+      {
+        tileId: "tile-id-2", // Positioned to the right of tile-id-1
+        xPosition: 12,
+        yPosition: Infinity,
+        width: 8,
+        height: 6,
+      },
+      {
+        tileId: "tile-id-3", // Positioned in the top-right corner
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-4", // Below tile-id-3
+        xPosition: 20,
+        yPosition: Infinity,
+        width: 4,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-6", // Positioned below tile-id-1
+        xPosition: 0,
+        yPosition: Infinity,
+        width: 6,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-7", // Positioned to the right of tile-id-6
+        xPosition: 6,
+        yPosition: Infinity,
+        width: 7,
+        height: 3,
+      },
+      {
+        tileId: "tile-id-8", // Positioned below tile-id-2, filling the remaining space
+        xPosition: 13,
+        yPosition: Infinity,
+        width: 7,
+        height: 4,
+      },
+    ],
   };
 
   return {

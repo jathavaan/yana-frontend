@@ -4,11 +4,13 @@ export const Tile = styled("section")<{ isEditable: boolean }>(
   ({ theme, isEditable }) => ({
     color: theme.palette.primary.contrastText,
     borderRadius: theme.shape.borderRadius,
-    padding: 0,
-    paddingBottom: theme.spacing(1),
     margin: 0,
+    border: `1px solid ${isEditable ? theme.palette.primary.dark : "transparent"}`,
     display: "flex",
-    border: `1px dotted ${isEditable ? theme.palette.primary.dark : "transparent"}`,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    flexGrow: 1,
     "&:hover": {
       backgroundColor: isEditable && theme.palette.primary.main,
     },

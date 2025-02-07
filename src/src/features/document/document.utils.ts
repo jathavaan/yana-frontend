@@ -44,6 +44,7 @@ export const createReactGridLayouts = (
 
   return setLayoutEditMode(layouts, false);
 };
+
 export const setLayoutEditMode = (
   layouts: Layouts,
   isEditable: boolean,

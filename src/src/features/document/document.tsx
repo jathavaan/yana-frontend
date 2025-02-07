@@ -20,8 +20,12 @@ export const Document = () => {
     onEditDocumentClick,
   } = useDocument("document-id");
 
-  const { handleLayoutChange, handleBreakPointChange, onNewTileClick } =
-    useDocumentGrid();
+  const {
+    handleLayoutChange,
+    handleBreakPointChange,
+    onNewTileClick,
+    tileHeight,
+  } = useDocumentGrid();
   return (
     <>
       {isError && <div>Error</div>}
@@ -47,15 +51,16 @@ export const Document = () => {
         breakpoints={{ lg: 1536, md: 1200, sm: 900, xs: 600, xxs: 0 }}
         cols={{ lg: 30, md: 20, sm: 10, xs: 5, xxs: 1 }}
         layouts={layouts}
+        margin={[0, 0]}
         containerPadding={[0, 0]}
-        rowHeight={106}
+        rowHeight={tileHeight}
         autoSize={true}
         compactType={"vertical"}
         onLayoutChange={(_, allLayouts) => handleLayoutChange(allLayouts)}
         onBreakpointChange={(newBreakpoint) =>
           handleBreakPointChange(newBreakpoint as LayoutSize)
         }
-        resizeHandles={["n", "s", "e", "w"]}
+        resizeHandles={["e", "w"]}
       >
         {layouts["lg"].length !== 0 ? (
           layouts["lg"].map((layout) => (

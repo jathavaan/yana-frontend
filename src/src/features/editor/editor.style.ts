@@ -6,15 +6,20 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   padding: 0,
   display: "flex",
-  height: "100%",
+  flexDirection: "column",
+  flexGrow: "unset !important",
+  minHeight: 0,
   width: "100%",
+  maxHeight: "auto",
+  overflow: "visible",
   "& .tt-editor": {
-    outline: "none",
-    height: "100%",
+    display: "flex",
+    padding: theme.spacing(0.8),
+    flexDirection: "column",
+    flexGrow: 1,
     width: "100%",
-    padding: theme.spacing(1),
+    outline: "none",
     color: theme.palette.primary.contrastText,
-    overflow: "auto",
     scrollbarWidth: "thin",
     scrollbarColor: `${theme.palette.primary.dark} transparent`,
   },
@@ -22,12 +27,10 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     padding: 0,
   },
   "& .tt-editor-center-content": {
-    display: "flex",
     justifyContent: "center",
+    alignItems: "center",
   },
-  "& .tt-p, & .tt-paragraph": {
-    marginBottom: theme.spacing(1),
-  },
+
   "& .tt-text": {
     fontSize: "1rem",
   },
@@ -62,6 +65,7 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     cursor: "pointer",
   },
   "& .tt-blockquote": {
+    margin: 0,
     borderLeft: `2px solid ${theme.palette.text.secondary}`,
     marginLeft: theme.spacing(2),
     paddingLeft: theme.spacing(1),
@@ -82,13 +86,24 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
   "& .tt-ordered-list": {
     listStyleType: "decimal",
     paddingLeft: theme.spacing(2),
+    margin: 0,
   },
   "& .tt-bullet-list": {
     listStyleType: "disc",
     paddingLeft: theme.spacing(2),
+    margin: 0,
   },
   "& .tt-list-item": {
-    marginBottom: theme.spacing(0.5),
+    // marginBottom: theme.spacing(2),
+  },
+  "& .tt-p": {
+    margin: `${theme.spacing(0.4)} 0`,
+  },
+  "& .tt-bullet-list .tt-list-item:first-of-type .tt-p": {
+    marginTop: 0,
+  },
+  "& .tt-bullet-list .tt-list-item:last-of-type .tt-p": {
+    marginBottom: 0,
   },
   "& .tt-task-list": {
     paddingLeft: theme.spacing(2),
@@ -104,8 +119,9 @@ export const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     margin: theme.spacing(2, 0),
   },
   "& .tt-image": {
-    maxWidth: "100%",
-    height: "auto",
+    maxHeight: "100%",
+    height: "100%",
+    width: "100%",
     borderRadius: theme.shape.borderRadius,
   },
   "& .tt-table": {
