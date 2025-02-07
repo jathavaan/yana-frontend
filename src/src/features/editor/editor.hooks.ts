@@ -145,7 +145,6 @@ export const useTileEditorRef = (tileId: string) => {
   useLayoutEffect(() => {
     if (contentHeight) {
       const numberOfRows = calculateNumberOfRows(contentHeight);
-      console.log(tileId, contentHeight, numberOfRows);
       dispatch(setTileRows({ tileId, numberOfRows }));
     }
   }, [editorContent, dispatch, tileId, contentHeight]);

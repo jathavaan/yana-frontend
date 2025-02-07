@@ -352,15 +352,15 @@ export const getDocumentById = async (documentId: string) => {
   } as DocumentResponse;
 
   /*return await sendApiRequest<
-                  GetDocumentByIdQueryParameters,
-                  undefined,
-                  DocumentResponse
-                >({
-                  endpoint: "Document",
-                  requestMethod: "GET",
-                  token: getUserToken(),
-                  parameters: {
-                    documentId: documentId,
-                  },
-                });*/
+                    GetDocumentByIdQueryParameters,
+                    undefined,
+                    DocumentResponse
+                  >({
+                    endpoint: "Document",
+                    requestMethod: "GET",
+                    token: getUserToken(),
+                    parameters: {
+                      documentId: documentId,
+                    },
+                  });*/
 };
