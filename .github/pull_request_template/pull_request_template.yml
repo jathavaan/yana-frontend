@@ -1,0 +1,62 @@
+name: Pull Request
+description: Submit a pull request for code changes.
+title: "[PR]: "
+labels: ["pull request"]
+body:
+  - type: input
+    id: closes
+    attributes:
+      label: "Closes Issue"
+      description: "Mention the issue(s) this PR closes (e.g., Closes #123)."
+      placeholder: "Closes #issue-id"
+    validations:
+      required: false
+
+  - type: textarea
+    id: intended_changes
+    attributes:
+      label: "Intended Changes"
+      description: "Briefly describe the changes introduced in this PR."
+      placeholder: "Describe the main purpose of the changes."
+    validations:
+      required: true
+
+  - type: textarea
+    id: non_functional_requirements
+    attributes:
+      label: "Non-Functional Requirements"
+      description: "List any non-functional requirements that should be met."
+      placeholder: |
+        - Private resources need a valid JWT token
+        - No delay in rendering content such as images, text, etc.
+        - The UI must be responsive
+        - API responses should be less than 500 ms
+        - Proper logging added for information and higher levels
+        - Endpoints must enforce strict authorization rules using JWT Bearer tokens
+        - System must only grant minimum permissions required
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: definition_of_done
+    attributes:
+      label: "Definition of Done"
+      description: "Check when this PR is considered complete."
+      options:
+        - label: "Acceptance criteria is met"
+          required: true
+        - label: "Non-functional requirements met"
+          required: true
+        - label: "Unit, snapshot, and end-to-end tests passed"
+          required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      description: "Ensure these conditions are met before submitting the PR."
+      options:
+        - label: "Warnings have been removed"
+          required: true
+        - label: "Definition of Done is satisfied"
+          required: true
