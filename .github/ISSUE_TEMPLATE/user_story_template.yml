@@ -1,14 +1,16 @@
-name: User Story
-description: Create a new user story to describe a feature or requirement from an end-user perspective.
+name: "User Story"
+description: "Create a new user story to describe a feature or requirement from an end-user perspective."
 title: "As a [role] I want [objective] for [motivation]"
-labels: ["userstory"]
+labels: [ "userstory" ]
+assignees:
+  - jathavaan
+
 body:
   - type: textarea
     id: user_story
     attributes:
-      label: "User Story"
-      description: "Describe the feature from the user's perspective using the format: 'As a [user type], I want to [goal] so that [reason].'"
-      placeholder: "As a [user type], I want to [goal] so that [reason]."
+      label: "User story description"
+      description: "Describe the feature in detail explaining how the feature should work in a happy- and unhappy-path scenarios"
     validations:
       required: true
 
@@ -44,40 +46,23 @@ body:
     validations:
       required: false
 
-  - type: textarea
-    id: non_functional_requirements
+  - type: markdown
     attributes:
-      label: "Non-Functional Requirements"
-      description: "List any non-functional requirements that should be met (e.g., performance, security, scalability)."
-      placeholder: |
+      value: "## Non-functional requirements"
+
+  - type: markdown
+    attributes:
+      value: |
         - Must load within 500ms
         - Should work on mobile and desktop
         - Should comply with accessibility guidelines
-    validations:
-      required: false
 
-  - type: checkboxes
-    id: definition_of_done
+  - type: markdown
     attributes:
-      label: "Definition of Done"
-      description: "Check when the user story is considered complete."
-      options:
-        - label: "Acceptance criteria met"
-          required: true
-        - label: "All necessary tests (unit, integration, e2e) have passed"
-          required: true
-        - label: "Code reviewed and merged"
-          required: true
-        - label: "Deployed to the appropriate environment"
-          required: false
+      value: "## Resources"
 
-  - type: textarea
-    id: resources
+  - type: markdown
     attributes:
-      label: "Resources"
-      description: "Provide any relevant links, documentation, or designs (one per line)."
-      placeholder: |
+      value: |
         - [API Docs](https://localhost:7189/swagger/index.html#/)
         - [Dribbble](https://dribbble.com/)
-    validations:
-      required: false
