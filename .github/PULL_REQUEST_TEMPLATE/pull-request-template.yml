@@ -1,7 +1,7 @@
 name: "Pull Request"
-description: Submit a pull request for code changes.
-title: "[PR]: "
-labels: [ "pull request" ]
+description: "Submit a pull request for code changes."
+title: "PR: "
+labels: [ "frontend","pull request" ]
 body:
   - type: input
     id: closes
