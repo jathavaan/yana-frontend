@@ -1,8 +1,8 @@
 name: "User Story"
 description: "Create a new user story to describe a feature or requirement from an end-user perspective."
 title: "As a [role] I want [objective] for [motivation]"
-labels: [ "userstory" ]
-projects: ["jathavaan/5"]
+labels: [ "userstory", "frontend" ]
+projects: [ "jathavaan/5" ]
 assignees:
   - jathavaan
 
