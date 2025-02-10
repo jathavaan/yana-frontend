@@ -2,6 +2,7 @@ name: "User Story"
 description: "Create a new user story to describe a feature or requirement from an end-user perspective."
 title: "As a [role] I want [objective] for [motivation]"
 labels: [ "userstory" ]
+projects: ["jathavaan/5"]
 assignees:
   - jathavaan
 
@@ -63,7 +64,6 @@ body:
 
   - type: markdown
     attributes:
-      label: "Resources"
       value: |
         - [API Docs](https://localhost:7189/swagger/index.html#/)
         - [Dribbble](https://dribbble.com/)
