@@ -1,0 +1,74 @@
+name: "Pull Request"
+description: "Submit a pull request for code changes."
+title: "PR: "
+labels: [ "frontend","pull request" ]
+body:
+  - type: input
+    id: closes
+    attributes:
+      label: "Closes Issue"
+      description: "Mention the issue(s) this PR closes (e.g., Closes #123)."
+      value: "Closes #"
+    validations:
+      required: true
+
+  - type: textarea
+    id: intended_changes
+    attributes:
+      label: "Intended Changes"
+      description: "Briefly describe the changes introduced in this PR."
+      placeholder: "Describe the main purpose of the changes."
+    validations:
+      required: true
+  - type: textarea
+    id: additional_changes
+    attributes:
+      label: "Additional Changes"
+      description: "List any additional changes made in this PR."
+      value: |
+        - Added new feature X
+        - Updated component Y
+        - Removed unused dependency Z
+
+  - type: checkboxes
+    id: non_functional_requirements
+    attributes:
+      label: "Non-Functional Requirements"
+      description: "Non-functional requirements that should be met."
+      options:
+        - label: "Private resources need a valid JWT token"
+          required: true
+        - label: "No delay in rendering content such as images, text, etc."
+          required: false
+        - label: "The UI must be responsive"
+          required: false
+        - label: "API responses should be less than 500 ms"
+          required: false
+        - label: "Proper logging added for information and higher levels"
+          required: false
+        - label: "Endpoints must enforce strict authorization rules using JWT Bearer tokens"
+          required: true
+        - label: "System must only grant minimum permissions required"
+          required: true
+
+  - type: checkboxes
+    id: definition_of_done
+    attributes:
+      label: "Definition of Done"
+      description: "Check when this PR is considered complete."
+      options:
+        - label: "Acceptance criteria is met"
+          required: true
+        - label: "Non-functional requirements met"
+          required: true
+        - label: "Unit, snapshot, and end-to-end tests passed"
+          required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist for code conventions and standards
+      description: "Ensure these conditions are met before submitting the PR."
+      options:
+        - label: "Warnings have been removed"
+          required: true
