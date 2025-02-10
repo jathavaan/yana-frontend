@@ -63,6 +63,7 @@ body:
 
   - type: markdown
     attributes:
+      label: "Resources"
       value: |
         - [API Docs](https://localhost:7189/swagger/index.html#/)
         - [Dribbble](https://dribbble.com/)
