@@ -7,7 +7,7 @@ export interface AxiosRequestParams<TQueryParameters, TBody> {
   requestMethod: RequestMethod;
   parameters?: TQueryParameters;
   body?: TBody;
-  token?: string;
+  token?: string | null;
 }
 
 export interface YanaAxiosRequestConfig extends AxiosRequestConfig {
