@@ -1,15 +1,11 @@
-import { LoginPage } from "@pages/login";
+import { RouterProvider } from "react-router";
+import { router } from "@shared/constants/routes";
 import { Container } from "@mui/material";
-import { RegisterPage } from "@pages/register";
-import { DocumentPage } from "@pages/document/documentPage.tsx";
 
 function App() {
   return (
-    <Container maxWidth={false} sx={{ mt: 3 }}>
-      <LoginPage />
-      <br />
-      <RegisterPage />
-      <DocumentPage />
+    <Container maxWidth={false}>
+      <RouterProvider router={router} />
     </Container>
   );
 }
