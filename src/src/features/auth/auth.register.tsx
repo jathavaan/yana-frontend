@@ -1,8 +1,9 @@
 ﻿import { useGoogleRegister } from "@features/auth/auth.hooks.ts";
 import { Button } from "@features/ui";
 import GoogleIcon from "@mui/icons-material/Google";
+import { ButtonProps } from "@mui/material";
 
-export const RegisterGoogleButton = () => {
+export const RegisterGoogleButton = (props: ButtonProps) => {
   const {
     onGoogleRegisterClick,
     isGoogleRegisterPending,
@@ -10,16 +11,12 @@ export const RegisterGoogleButton = () => {
   } = useGoogleRegister();
 
   return (
-    <div>
-      {isGoogleRegisterError && (
-        <p>Something went wrong while creating a user</p>
-      )}
-      <Button
-        buttonText="Register with Google"
-        onClick={() => onGoogleRegisterClick()}
-        isLoading={isGoogleRegisterPending}
-        startIcon={<GoogleIcon />}
-      />
-    </div>
+    <Button
+      buttonText="Register with Google"
+      onClick={() => onGoogleRegisterClick()}
+      isLoading={isGoogleRegisterPending}
+      startIcon={<GoogleIcon />}
+      {...props}
+    />
   );
 };

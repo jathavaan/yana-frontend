@@ -2,5 +2,4 @@
 
 export const StyledText = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
-  font: "Outfit",
 }));

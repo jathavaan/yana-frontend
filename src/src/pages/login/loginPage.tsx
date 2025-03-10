@@ -9,7 +9,7 @@ export const LoginPage = () => {
       <Grid container sx={{ width: "80%" }} spacing={2}>
         <Grid size={{ md: 6 }}>
           <Stack spacing={2} alignItems="stretch">
-            <Text variant="h5">Login to access your notes</Text>
+            <Text variant="h5">Pick up where you left off! Sign in</Text>
             <TextField
               required
               disabled
@@ -48,7 +48,7 @@ export const LoginPage = () => {
               color: "#ffffff",
             }}
           >
-            Image placeholder text
+            Image placeholder
           </Text>
         </Grid>
       </Grid>
