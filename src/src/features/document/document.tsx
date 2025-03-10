@@ -2,13 +2,12 @@
 import "react-resizable/css/styles.css";
 import { StyledDocumentGrid } from "@features/document/document.style.ts";
 import { Editor } from "@features/editor/editor.tsx";
-import { Button } from "@features/ui/button";
 import {
   useDocument,
   useDocumentGrid,
 } from "@features/document/document.hooks.ts";
-import { Tile } from "@features/ui/tile";
 import { LayoutSize } from "@shared/types";
+import { Button, Tile } from "@features/ui";
 
 export const Document = () => {
   const {

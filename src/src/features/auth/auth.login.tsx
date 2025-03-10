@@ -1,5 +1,5 @@
 ﻿import { useGoogleLogin } from "@features/auth/auth.hooks.ts";
-import { Button } from "@features/ui/button";
+import { Button } from "@features/ui";
 import GoogleIcon from "@mui/icons-material/Google";
 
 export const LoginButtonGoogle = () => {

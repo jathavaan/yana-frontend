@@ -1,5 +1,5 @@
 ﻿import { LoginButtonGoogle } from "@features/auth";
-import { TextField } from "@features/ui/textField";
+import { TextField } from "@features/ui";
 
 export const LoginPage = () => {
   return (
