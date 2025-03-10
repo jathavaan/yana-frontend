@@ -2,8 +2,10 @@
 import Grid from "@mui/material/Grid2";
 import { Divider, Stack } from "@mui/material";
 import { RegisterGoogleButton } from "@features/auth";
+import { useNavigate } from "react-router";
 
 export const RegisterPage = () => {
+  const navigate = useNavigate();
   return (
     <Box>
       <Grid container sx={{ width: "80%" }} spacing={2}>
@@ -44,7 +46,8 @@ export const RegisterPage = () => {
             <Divider>or register with</Divider>
             <RegisterGoogleButton fullWidth />
             <Text variant="body1">
-              Already have an account? Click <Link>here</Link> to sign in
+              Already have an account? Click{" "}
+              <Link onClick={() => navigate("/login")}>here</Link> to sign in
             </Text>
           </Stack>
         </Grid>

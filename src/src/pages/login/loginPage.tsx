@@ -2,8 +2,10 @@
 import { Box, Button, Link, Text, TextField } from "@features/ui";
 import Grid from "@mui/material/Grid2";
 import { Divider, Stack } from "@mui/material";
+import { useNavigate } from "react-router";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
   return (
     <Box>
       <Grid container sx={{ width: "80%" }} spacing={2}>
@@ -28,7 +30,9 @@ export const LoginPage = () => {
             <Divider>or sign in with</Divider>
             <LoginButtonGoogle fullWidth />
             <Text variant="body1">
-              Don't have an account yet? Click <Link>here</Link> to register!
+              Don't have an account yet? Click{" "}
+              <Link onClick={() => navigate("/register")}>here</Link> to
+              register!
             </Text>
           </Stack>
         </Grid>
