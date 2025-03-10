@@ -4,7 +4,14 @@ import { Container } from "@mui/material";
 
 function App() {
   return (
-    <Container maxWidth={false}>
+    <Container
+      maxWidth={false}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <RouterProvider router={router} />
     </Container>
   );

@@ -6,7 +6,7 @@ export const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   align: "center",
   textTransform: "none",
-  padding: theme.spacing(1.4, 1.2),
+  padding: theme.spacing(1.2, 1.2),
 
   "&:hover": {
     backgroundColor: theme.palette.secondary.main,
