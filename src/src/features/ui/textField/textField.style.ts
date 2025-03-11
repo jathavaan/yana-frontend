@@ -16,13 +16,13 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
   },
 
   "& .MuiOutlinedInput-root": {
-    "& :hover": {
+    "&:hover": {
       transition: theme.transitions.create(["background-color", "transform"]),
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
       borderRadius: theme.shape.borderRadius,
     },
-    "& :active, & :focus": {
+    "&:active, &:focus": {
       transition: theme.transitions.create(["background-color", "transform"]),
       backgroundColor: theme.palette.primary.light,
       color: theme.palette.primary.contrastText,
@@ -50,5 +50,13 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
     "& .MuiOutlinedInput-notchedOutline": {
       border: "1px",
     },
+  },
+
+  "& .MuiInputLabel-shrink": {
+    color: theme.palette.secondary.contrastText,
+    marginLeft: theme.spacing(-0.8),
+    padding: theme.spacing(0.2, 1),
+    backgroundColor: theme.palette.secondary.main,
+    borderRadius: theme.shape.borderRadius,
   },
 }));
