@@ -2,17 +2,18 @@
 
 export const lightTheme = createTheme({
   palette: {
-    primary: { main: "#f7f7f7", light: "#ffffff" },
-    secondary: { main: "#000000" },
-    // info: {},
+    primary: { main: "#ffffff", contrastText: "#000000" },
+    secondary: { main: "#6a1b9a", contrastText: "#ffffff" },
+    info: { main: "#3a3a3a", contrastText: "#ffffff" },
     // success: {},
     // warning: {},
-    // error: {},
+    error: { main: "#ff4081", contrastText: "#ffffff" },
     background: {
       default: "#f7f7f7",
       paper: "#ffffff",
     },
     // action: {},
+    tonalOffset: 0.2,
   },
   shape: {
     borderRadius: 10,
