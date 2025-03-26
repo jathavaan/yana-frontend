@@ -1,8 +1,8 @@
-﻿import { Button, styled } from "@mui/material";
+﻿import { IconButton, styled } from "@mui/material";
 
-export const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.dark,
-  color: theme.palette.secondary.contrastText,
+export const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  backgroundColor: theme.palette.grey[200],
+  color: theme.palette.secondary.dark,
   borderRadius: theme.shape.borderRadius,
   align: "center",
   textTransform: "none",
@@ -10,7 +10,7 @@ export const StyledButton = styled(Button)(({ theme }) => ({
   border: "none",
 
   "&:hover": {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.grey[300],
   },
   "&.Mui-disabled": {
     backgroundColor: theme.palette.action.disabled,
