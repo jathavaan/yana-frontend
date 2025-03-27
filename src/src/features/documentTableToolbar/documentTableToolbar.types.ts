@@ -5,3 +5,5 @@
 export interface CreateDocumentBody {
   title: string;
 }
+
+export interface DocumentTableToolbarState {}
