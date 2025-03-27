@@ -1,7 +1,7 @@
-﻿export interface CreateDocumentResponse {}
+﻿export interface CreateDocumentResponse {
+  documentId: string;
+}
 
 export interface CreateDocumentBody {
   title: string;
 }
-
-export interface CreateDocumentQueryParameters {}
