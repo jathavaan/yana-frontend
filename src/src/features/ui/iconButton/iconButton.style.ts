@@ -4,7 +4,7 @@ export const StyledIconButton = styled(IconButton)(({ theme }) => ({
   backgroundColor: theme.palette.grey[200],
   color: theme.palette.secondary.dark,
   borderRadius: theme.shape.borderRadius,
-  align: "center",
+  alignItems: "center",
   textTransform: "none",
   padding: theme.spacing(1.2, 1.2),
   border: "none",
