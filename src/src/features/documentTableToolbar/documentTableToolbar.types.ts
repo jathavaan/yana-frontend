@@ -4,6 +4,7 @@
 
 export interface CreateDocumentBody {
   title: string;
+  tags: string[];
 }
 
 export interface DocumentTableToolbarState {}

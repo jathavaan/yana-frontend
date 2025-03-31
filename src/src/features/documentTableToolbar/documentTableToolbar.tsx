@@ -1,14 +1,19 @@
 ﻿import { Button, ButtonGroup, IconButton, Stack, Tooltip } from "@features/ui";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import EditIcon from "@mui/icons-material/Edit";
+import { useDocumentTableToolbar } from "@features/documentTableToolbar/documentTableToolbar.hooks.ts";
 
 export const DocumentTableToolbar = () => {
+  const { isPending, onCreateDocumentClick } = useDocumentTableToolbar();
   return (
     <Stack direction="row-reverse">
       <ButtonGroup size="small">
-        <Button buttonText="New Document" size="small" />
+        <Button
+          buttonText="New Document"
+          disabled={isPending}
+          onClick={() => onCreateDocumentClick()}
+        />
         <IconButton
-          disabled
           size="small"
           sx={(theme) => ({
             borderLeft: `1px solid ${theme.palette.secondary.contrastText}`,
@@ -29,6 +34,7 @@ export const DocumentTableToolbar = () => {
               pl: 2,
             },
           })}
+          disabled={isPending}
         >
           <ArrowDropDownIcon />
         </IconButton>
