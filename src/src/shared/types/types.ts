@@ -38,3 +38,8 @@ export interface TileLayout {
   minHeight?: number;
   minWidth?: number;
 }
+
+export interface Pagination {
+  currentPage: number;
+  pageSize: number;
+}
